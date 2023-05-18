@@ -1,7 +1,5 @@
 import React from "react";
 
-import MOVELEFT from "../assets/images/moveleft.png";
-import MOVERIGHT from "../assets/images/moveright.png";
 import CIRCLE from "../assets/images/circle.png";
 import HOUSEHOLD from "../assets/images/household.png";
 import ELECTRONIC from "../assets/images/electronic.png";
@@ -45,14 +43,6 @@ const Catalog = () => {
           <h1 className="text-[43px] font-bold font-secondaryFont">
             Danh mục sản phẩm
           </h1>
-        </div>
-        <div className="grid grid-cols-2 h-[76px] gap-x-[10px]">
-          <a href="/">
-            <img src={MOVELEFT} alt="Left"></img>
-          </a>
-          <a href="/">
-            <img src={MOVERIGHT} alt="Right"></img>
-          </a>
         </div>
       </div>
       <div className="wrapper flex items-center justify-center">

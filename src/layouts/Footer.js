@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/Base.css";
 import Button from "../components/Button";
 
 import INS from "../assets/svg/ins.svg";
@@ -86,7 +87,7 @@ const Footer = () => {
             <input
               type="text"
               placeholder={"Enter your email"}
-              className="bg-[#424242] w-[334px] h-[60px] rounded-[8px] p-4 font-primaryFont text-[18px] text-[#ADADAD]"
+              className="input-form border-Color2 bg-[#424242] w-[334px] h-[60px] rounded-[8px] p-4 font-primaryFont text-[18px] text-[#ADADAD]"
             ></input>
             <Button className="w-[133px] h-[60px] bg-linearBg1 text-[18px] font-bold font-secondaryFont text-white">
               Subscribe

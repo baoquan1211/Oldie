@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/Base.css";
 import DELIVERY from "../assets/images/delivery.png";
 import Button from "../components/Button";
 
@@ -25,8 +26,8 @@ const SearchBanner = () => {
             <div className="justify-center flex items-center px-[24px] gap-x-2 ">
               <input
                 type="text"
-                placeholder={"Nhập sản phẩm ..."}
-                className="bg-[#F5F5F5] w-full max-w-[641px] h-[49px] rounded-[8px] p-4 font-secondaryFont text-[#9E9E9E]"
+                placeholder={"Nhập sản phẩm"}
+                className="input-form bg-[#F5F5F5] w-full max-w-[641px] h-[49px] rounded-[8px] p-4 font-secondaryFont text-[#9E9E9E]"
               ></input>
               <Button className="w-[194px] h-[60px] bg-Color2 text-[18px] font-bold font-primaryFont text-white gap-x-[10px]">
                 <img src={SEARCH_ICON} alt="Search Icon"></img>Tìm kiếm

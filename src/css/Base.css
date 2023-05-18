@@ -1,0 +1,11 @@
+.input-form {
+  outline-color: #ffb30e;
+}
+
+.input-form:hover {
+  outline-color: #ffb30e;
+}
+
+.input-form:focus-visible {
+  outline-color: #ffb30e;
+}

@@ -15,7 +15,7 @@ const Header = () => {
           <a href="/">
             <img src={SEARCH} alt="Search"></img>
           </a>
-          <a href="/">
+          <a href="/cart">
             <img src={CART} alt="Cart"></img>
           </a>
           <a href="/" alt="Login">
