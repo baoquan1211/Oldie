@@ -20,11 +20,11 @@ const Invoice = ({ totalPrice }) => {
       <h1 className="font-primaryFont text-[20px] font-semibold">Hóa đơn</h1>
       <div className="flex justify-between text-[16px] font-primaryFont mt-[10px]">
         <h2>Thành tiền</h2>
-        <h2>{totalPrice}</h2>
+        <h2>{totalPrice}đ</h2>
       </div>
       <div className="flex justify-between text-[16px] font-primaryFont">
         <h2>Phí vận chuyển</h2>
-        <h2>{shippingFee}</h2>
+        <h2>{shippingFee}đ</h2>
       </div>
       <div className="flex justify-center gap-x-[16px] items-center ">
         <input
@@ -37,7 +37,7 @@ const Invoice = ({ totalPrice }) => {
       </div>
       <div className="flex justify-between text-[16px] font-primaryFont font-bold">
         <h2>Tổng tiền</h2>
-        <h2>{totalPay}</h2>
+        <h2>{totalPay}đ</h2>
       </div>
       <div className="flex justify-center mt-[10px]">
         <button className="h-[48px] w-[380px] rounded-[8px] bg-linearBtnBg text-[18px] text-white font-secondaryFont font-bold ">

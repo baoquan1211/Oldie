@@ -18,7 +18,7 @@ const Header = () => {
           <a href="/cart">
             <img src={CART} alt="Cart"></img>
           </a>
-          <a href="/" alt="Login">
+          <a href="/login" alt="Login">
             <Button className="h-[46px] w-[142px] text-[#FFB800] font-primaryFont font-bold gap-1 rounded-[8px] shadow-linearColor1 bg-white">
               Đăng nhập
             </Button>
