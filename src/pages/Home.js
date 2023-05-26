@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 
 import Header from "../layouts/Header";
 import SearchBanner from "../layouts/SearchBanner";
@@ -9,6 +9,11 @@ import Feature from "../layouts/Feature";
 import TopProducts from "../layouts/TopProducts";
 
 const Home = () => {
+  const username = sessionStorage.getItem("username");
+  const _id = sessionStorage.getItem("_id");
+  const token = sessionStorage.getItem("token");
+  const [name, setName] = useState(sessionStorage.getItem("name"));
+
   return (
     <>
       <Header></Header>

@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import authReducer from "./state";
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import {
   persistStore,
@@ -23,6 +23,8 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Footer from "./layouts/Footer";
 import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
+import PostProduct from "./pages/PostProduct";
 
 const persistConfig = { key: "root", storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, authReducer);
@@ -43,9 +45,12 @@ root.render(
       <PersistGate loading={null} persistor={persistStore(store)}>
         <BrowserRouter>
           <Routes>
+            <Route path="/home" element={<Home />}></Route>
             <Route path="/" element={<Home />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/post" element={<PostProduct />}></Route>
           </Routes>
           <Footer></Footer>
         </BrowserRouter>

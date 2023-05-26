@@ -68,10 +68,10 @@ const Footer = () => {
             </h1>
           </div>
           <div className="flex gap-3">
-            <a href="https://www.instagram.com/">
+            <a href="https://www.instagram.com/_baoquan/">
               <img src={INS} alt="Ins"></img>
             </a>
-            <a href="https://www.facebook.com/">
+            <a href="https://www.facebook.com/dung.rui.bao.quan.day/">
               <img src={FB} alt="Facebook"></img>
             </a>
             <a href="https://twitter.com/">

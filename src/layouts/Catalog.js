@@ -37,7 +37,7 @@ const Catalog_Items = [
 
 const Catalog = () => {
   return (
-    <section className="h-[571px] bg-[#FEFAF1] pt-[80px] pb-[80px] ">
+    <section className="h-[571px] bg-[#FEFAF1] pt-[80px] pb-[80px]">
       <div className="wrapper flex items-center">
         <div className="w-full">
           <h1 className="text-[43px] font-bold font-secondaryFont">
