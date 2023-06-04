@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LOGO from "../assets/images/logo.png";
 import CART from "../assets/images/cart.png";
 import Button from "../components/Button";
-import { useNavigate, Link, Navigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../css/Header.css";
 
 import USER from "../assets/svg/user.svg";
