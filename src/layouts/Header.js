@@ -3,7 +3,7 @@ import LOGO from "../assets/images/logo.png";
 import CART from "../assets/images/cart.png";
 import Button from "../components/Button";
 import { useNavigate, Link } from "react-router-dom";
-import "../css/Header.css";
+import "./Header.css";
 
 import USER from "../assets/svg/user.svg";
 
@@ -28,11 +28,11 @@ const Header = () => {
   };
 
   return (
-    <header className="h-[108px] bg-gray-100 w-full fixed top-0 left-0">
+    <header className="h-[108px] bg-gray-100 w-full fixed top-0 left-0 z-50">
       <div className="wrapper flex items-center h-full justify-between">
-        <a href="/home">
+        <Link to="/home">
           <img src={LOGO} alt="Logo"></img>
-        </a>
+        </Link>
         <div className="flex items-center">
           <a href="/cart">
             <img src={CART} alt="Cart"></img>

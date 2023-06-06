@@ -2,47 +2,44 @@ import React, { useState } from "react";
 import "../../css/Base.css";
 import { useNavigate, Link, Outlet } from "react-router-dom";
 import Header from "../../layouts/Header";
+import toastr from "toastr";
 
 import FACEBOOK from "../../assets/svg/facebook.svg";
 import GOOGLE from "../../assets/svg/google.svg";
 import APPLE from "../../assets/svg/apple.svg";
+import { userLogin } from "../../services/UserServices";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [iswrong, setIsWrong] = useState(false);
-
   const navigate = useNavigate();
 
-  const login = async () => {
-    const item = { username, password };
-    const message = {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(item),
-    };
-    await fetch("http://localhost:3001/auth/login", message)
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.message) {
-          console.log(res.message);
-          throw Error(res.message);
-        } else {
-          sessionStorage.setItem("token", res.token);
-          sessionStorage.setItem("username", res.user.username);
-          sessionStorage.setItem("_id", res.user._id);
-          sessionStorage.setItem("name", res.user.hoten);
-          navigate("/home");
+  const Login = async () => {
+    if (!username) {
+      toastr.error("Vui lòng nhập tài khoản.");
+    } else if (!password) {
+      toastr.error("Vui lòng nhập mật khẩu.");
+    } else {
+      let res = await userLogin(username, password);
+      if (res && res.token) {
+        sessionStorage.setItem("token", res.token);
+        sessionStorage.setItem("username", res.user.username);
+        sessionStorage.setItem("_id", res.user._id);
+        sessionStorage.setItem("name", res.user.hoten);
+        navigate("/home");
+      } else {
+        if (res && res.status === 400) {
+          console.log(res);
+          if (res.data.message === "Invalid password") {
+            toastr.error("Sai mật khẩu, vui lòng thử lại.");
+          }
+          if (res.data.message === "User not found") {
+            toastr.error("Tài khoản không tồn tại.");
+          }
         }
-      })
-      .catch(function (e) {
-        console.log(e);
-        setIsWrong(true);
-      });
+      }
+    }
   };
 
   return (
@@ -70,24 +67,25 @@ const Login = () => {
               ></input>
               <button
                 className="w-[330px] h-[68px] rounded-[8px] mt-[20px] bg-[#F59500] hover:bg-[#FFAD2D] active:bg-[#F09303] font-secondaryFont font-bold text-white text-[22px]"
-                onClick={login}
+                onClick={Login}
               >
                 Đăng nhập
               </button>
-              {iswrong && (
-                <h1 className="font-primaryFont text-[16px] text-red-500">
-                  Sai tài khoản hay mật khẩu!!!
-                </h1>
-              )}
             </div>
             <div className="flex flex-col gap-y-[44px] justify-center items-center">
               <h1 className="font-primaryFont text-[20px]">
                 Hoặc sử dụng tài khoản
               </h1>
               <div className="grid grid-flow-col gap-x-[50px]">
-                <img src={FACEBOOK} alt="facebook"></img>
-                <img src={GOOGLE} alt="google"></img>
-                <img src={APPLE} alt="apple"></img>
+                <a href="https://www.facebook.com/">
+                  <img src={FACEBOOK} alt="facebook"></img>
+                </a>
+                <a href="https://accounts.google.com/v3/signin/identifier?dsh=S369793380%3A1685973355175576&continue=https%3A%2F%2Fwww.google.com%2F&ec=GAZAmgQ&ffgf=1&hl=vi&ifkv=Af_xneGg7XjIKNJUuxnxu3aRdMjh2-T1oOSCALQVLLyknE2ciCJ8_-GLwbnQdQt8e8QjG30f8oG8&passive=true&flowName=GlifWebSignIn&flowEntry=ServiceLogin">
+                  <img src={GOOGLE} alt="google"></img>
+                </a>
+                <a href="https://appleid.apple.com/sign-in">
+                  <img src={APPLE} alt="apple"></img>
+                </a>
               </div>
               <div className="mt-[30px]">
                 <h1 className="font-primaryFont text-[16px]">

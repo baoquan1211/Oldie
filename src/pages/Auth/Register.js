@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Header from "../../layouts/Header";
+import { userRegister } from "../../services/UserServices";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -9,6 +10,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [SDT, setSDT] = useState("");
   const [state, setState] = useState(false);
+  const [message, setMessage] = useState("");
 
   const register = async () => {
     try {
@@ -31,6 +33,20 @@ const Register = () => {
         });
     } catch (e) {
       console.log(e.message);
+    }
+  };
+
+  const Register = async () => {
+    let res = await userRegister(username, password, hoten, SDT, email);
+    console.log({ username, password, hoten, SDT, email });
+    if (res.message === "Register succesfully") {
+      console.log("Đăng ký thành công!");
+      setMessage("Đăng ký thành công!");
+      setState(true);
+    } else if (res.status === 500) {
+      console.log("Tài khoản đã tồn tại.");
+      setMessage("Tài khoản đã tồn tại!");
+      setState(true);
     }
   };
 
@@ -77,16 +93,17 @@ const Register = () => {
           </div>
           <button
             className="w-[330px] h-[68px] rounded-[8px] mt-[10px] bg-[#F59500]  hover:bg-[#FFAD2D] active:bg-[#F09303]  font-secondaryFont font-bold text-white text-[22px]"
-            onClick={register}
+            onClick={Register}
           >
             Đăng ký
           </button>
           {state && (
             <h1 className="font-primaryFont text-[16px]">
-              Đăng ký thành công!{" "}
+              {message}{" "}
               <Link
                 to="/login"
                 className="font-primaryFont text-[#426B1F] font-semibold"
+                hidden={message === "Đăng ký thành công!" ? false : true}
               >
                 Quay về trang đăng nhập.
               </Link>
