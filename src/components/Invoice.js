@@ -1,9 +1,11 @@
-import { React, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import ARROW from "../assets/svg/arrow.svg";
 
 const Invoice = ({ totalPrice }) => {
+  let voucherUsed = useRef(false);
   const shippingFee = 40000;
+  const [voucher, setVoucher] = useState("");
 
   const [totalPay, setTotalPay] = useState(() => {
     return totalPrice + shippingFee;
@@ -14,6 +16,13 @@ const Invoice = ({ totalPrice }) => {
       return totalPrice + shippingFee;
     });
   }, [totalPrice]);
+
+  const voucherHandle = () => {
+    if (voucher === "QUAN" && !voucherUsed.current) {
+      setTotalPay(totalPay - 50000);
+      voucherUsed.current = true;
+    }
+  };
 
   return (
     <div className="flex flex-col bg-[#FAFAF5] w-[430px] p-[24px] gap-y-[20px] rounded-[24px]">
@@ -28,10 +37,16 @@ const Invoice = ({ totalPrice }) => {
       </div>
       <div className="flex justify-center gap-x-[16px] items-center ">
         <input
+          onChange={(e) => {
+            setVoucher(e.target.value);
+          }}
           placeholder="Mã giảm giá"
           className="input-form rounded-[8px] w-[250px] h-[40px] bg-[#F5F5F5] font-primaryFont text-[18px] text-[#9E9E9E] pl-[16px]"
         ></input>
-        <button className="h-[41px] w-[82px] rounded-[8px] bg-linearBtnBg text-[18px] text-white font-secondaryFont font-bold ">
+        <button
+          onClick={voucherHandle}
+          className="h-[41px] w-[82px] rounded-[8px] bg-linearBtnBg text-[18px] text-white font-secondaryFont font-bold "
+        >
           Sử dụng
         </button>
       </div>

@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Header from "../../layouts/Header";
-import { userRegister } from "../../services/UserServices";
+import { userRegister } from "../../services/auth/AuthServices";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -11,30 +11,6 @@ const Register = () => {
   const [SDT, setSDT] = useState("");
   const [state, setState] = useState(false);
   const [message, setMessage] = useState("");
-
-  const register = async () => {
-    try {
-      const item = { username, password, hoten, email, SDT };
-      const message = {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(item),
-      };
-      console.log(message);
-      await fetch("http://localhost:3001/auth/register", message)
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
-          console.log("Login successfully.");
-          setState(true);
-        });
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
 
   const Register = async () => {
     let res = await userRegister(username, password, hoten, SDT, email);

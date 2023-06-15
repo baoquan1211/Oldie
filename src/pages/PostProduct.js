@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Header from "../layouts/Header";
 import toastr from "toastr";
-import { userPostProduct } from "../services/UserServices";
+import { postProduct } from "../services/user/UserServices";
 import FileUpload from "../components/FileUpload";
+import { useNavigate } from "react-router-dom";
 
 const PostProduct = () => {
-  const _idUser = sessionStorage.getItem("_id");
+  const navigate = useNavigate();
+  const _idUser = localStorage.getItem("_id");
   const [catalog, setCatalog] = useState("");
   const [product, setProduct] = useState("");
   const [condition, setCondition] = useState("");
@@ -18,40 +20,74 @@ const PostProduct = () => {
   const [images, setImages] = useState([]);
 
   const handleClick = async () => {
-    let item = {
-      catalog,
-      product,
-      condition,
-      brand,
-      amount,
-      price,
-      address,
-      phone,
-      discription,
-    };
-    console.log(item);
-    let res = await userPostProduct(
-      product,
-      catalog,
-      brand,
-      amount,
-      discription,
-      condition,
-      price,
-      address,
-      phone
-    );
-    toastr.success("Đăng bài thành công!");
+    if (catalog === "") {
+      toastr.error("Vui lòng chọn danh mục sản phẩm!");
+    }
+    if (product === "") {
+      toastr.error("Vui lòng điền tên sản phẩm!");
+    }
+    if (condition === "") {
+      toastr.error("Vui lòng điền tình trạng sản phẩm!");
+    }
+    if (brand === "") {
+      toastr.error("Vui lòng điền hãng sản xuất sản phẩm!");
+    }
+    if (amount === "") {
+      toastr.error("Vui lòng điền số lượng sản phẩm!");
+    }
+    if (price === "") {
+      toastr.error("Vui lòng điền giá sản phẩm!");
+    }
+    if (address === "") {
+      toastr.error("Vui lòng điền địa chỉ!");
+    }
+    if (phone === "") {
+      toastr.error("Vui lòng điền số điện thoại!");
+    }
+    if (discription === "") {
+      toastr.error("Vui lòng điền mô tả sản phẩm!");
+    }
+    if (images === "") {
+      toastr.error("Vui lòng chọn ít nhất một ảnh sản phẩm!");
+    } else {
+      let res = await postProduct(
+        _idUser,
+        product,
+        catalog,
+        brand,
+        amount,
+        discription,
+        condition,
+        price,
+        address,
+        phone,
+        images
+      );
+      if (res && res.status !== 500) {
+        toastr.success("Đăng bài thành công!");
+        console.log(res);
+        const idProduct = res._id;
+        navigate(`/product/${idProduct}`);
+      } else {
+        console.log(res);
+        toastr.error("Có lỗi xảy ra. Vui lòng thử lại!");
+      }
+    }
   };
 
   return (
     <>
       <Header></Header>
-      <div className="wrapper mt-[108px] pt-[50px] pb-[50px] flex justify-center">
+      <div className="text-center border-b-[2px] mt-[108px]">
+        <h1 className="font-secondaryFont font-bold text-[88px] text-[#F59500] ">
+          Đăng bài sản phẩm
+        </h1>
+      </div>
+      <div className="wrapper pt-[50px] pb-[50px] flex justify-center">
         <div className="flex gap-x-[100px]">
           <div>
             <div className="flex flex-col">
-              <h1 className="font-secondaryFont font-bold text-[36px] text-[#F65900]">
+              <h1 className="font-secondaryFont font-bold text-[36px] text-[#F59500]">
                 Hình ảnh của sản phẩm
               </h1>
               <h2 className="font-secondaryFont font-bold text-[16px] mb-4">
@@ -63,7 +99,7 @@ const PostProduct = () => {
           </div>
           <div className="flex flex-col gap-y-5">
             <div className="flex flex-col">
-              <h1 className="font-secondaryFont font-bold text-[32px] text-[#F65900]">
+              <h1 className="font-secondaryFont font-bold text-[32px] text-[#F59500]">
                 Danh mục bài đăng
               </h1>
               <select
@@ -82,7 +118,7 @@ const PostProduct = () => {
               </select>
             </div>
             <div className="flex flex-col">
-              <h1 className="font-secondaryFont font-bold text-[32px] text-[#F65900]">
+              <h1 className="font-secondaryFont font-bold text-[32px] text-[#F59500]">
                 Thông tin chi tiết
               </h1>
               <div className="flex flex-col gap-y-4">
@@ -115,7 +151,7 @@ const PostProduct = () => {
               </div>
             </div>
             <div className="flex flex-col">
-              <h1 className="font-secondaryFont font-bold text-[32px] text-[#F65900]">
+              <h1 className="font-secondaryFont font-bold text-[32px] text-[#F59500]">
                 Thông tin liên hệ
               </h1>
               <div className="flex flex-col gap-y-4">
@@ -134,7 +170,7 @@ const PostProduct = () => {
           </div>
           <div>
             <div className="flex flex-col justify-center">
-              <h1 className="font-secondaryFont font-bold text-[32px] text-[#F65900]">
+              <h1 className="font-secondaryFont font-bold text-[32px] text-[#F59500]">
                 Mô tả chi tiết
               </h1>
               <textarea

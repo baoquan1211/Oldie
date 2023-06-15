@@ -3,14 +3,20 @@ import React, { useState, useEffect } from "react";
 import LEFT from "../assets/svg/left.svg";
 import RIGHT from "../assets/svg/right.svg";
 
-const CartProduct = ({ children, pricePerId, totalPrice, setTotalPrice }) => {
-  const [numProduct, setNumProduct] = useState(1);
+const CartProduct = ({
+  children,
+  pricePerId,
+  totalPrice,
+  setTotalPrice,
+  numPerId,
+}) => {
+  const [numProduct, setNumProduct] = useState(numPerId);
 
   const plusPriceHandle = (accumulator, currentValue) => {
     return accumulator + currentValue._price;
   };
 
-  const pricePerProduct = numProduct * parseInt(children._price);
+  const pricePerProduct = numProduct * parseInt(children.Gia);
 
   useEffect(() => {
     const index = pricePerId.findIndex(({ _id }) => _id === children._id);
@@ -23,20 +29,7 @@ const CartProduct = ({ children, pricePerId, totalPrice, setTotalPrice }) => {
       pricePerId[index]._price = pricePerProduct;
     }
     setTotalPrice(pricePerId.reduce(plusPriceHandle, 0));
-    console.log(totalPrice);
   });
-
-  /* const index = pricePerId.findIndex(({ _id }) => _id === children._id);
-  if (index === -1) {
-    pricePerId.push({
-      _id: children._id,
-      _price: pricePerProduct,
-    });
-  } else {
-    pricePerId[index]._price = pricePerProduct;
-  }
-  totalPrice = pricePerId.reduce(plusPriceHandle, 0);
-  console.log(totalPrice); */
 
   const Increase = () => {
     setNumProduct(numProduct + 1);
@@ -52,16 +45,16 @@ const CartProduct = ({ children, pricePerId, totalPrice, setTotalPrice }) => {
       <div className="flex">
         <div className="flex items-center w-full">
           <img
-            srcSet={`${children._img} 1x`}
+            srcSet={children.HinhAnh[0]}
             alt="product_img"
             className="rounded-[24px] max-h-[156px]"
           ></img>
           <div className="ml-[30px] flex gap-y-[5px] flex-col w-full">
             <h1 className="font-primaryFont font-semibold text-[20px]">
-              {children._name}
+              {children.TenSp}
             </h1>
             <p className="font-primaryFont font-semibold text-[#426B1F]">
-              {children._price} VND
+              {children.Gia} VND
             </p>
             <div className="w-[170px] h-[40px] rounded-[30px] flex items-center border-[2px] border-[#E6E6E6]">
               <div className="font-secondaryFont font-bold text-[22px] text-[#FB3C00] w-[94px] text-center">

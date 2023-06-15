@@ -6,28 +6,28 @@ import ProductShow from "../components/ProductShow";
 
 const Product_Items = [
   {
-    name: "Iphone 12promax 128GB",
-    value: "13.300.000",
+    TenSp: "Iphone 12promax 128GB",
+    Gia: "13.300.000",
     seller: P1,
-    image: IP12PM128GB,
+    HinhAnh: [IP12PM128GB],
   },
   {
-    name: "Iphone 12promax 128GB",
-    value: "13.300.000",
+    TenSp: "Iphone 12promax 128GB",
+    Gia: "13.300.000",
     seller: P1,
-    image: IP12PM128GB,
+    HinhAnh: [IP12PM128GB],
   },
   {
-    name: "Iphone 12promax 128GB",
-    value: "13.300.000",
+    TenSp: "Iphone 12promax 128GB",
+    Gia: "13.300.000",
     seller: P1,
-    image: IP12PM128GB,
+    HinhAnh: [IP12PM128GB],
   },
   {
-    name: "Iphone 12promax 128GB",
-    value: "13.300.000",
+    TenSp: "Iphone 12promax 128GB",
+    Gia: "13.300.000",
     seller: P1,
-    image: IP12PM128GB,
+    HinhAnh: [IP12PM128GB],
   },
 ];
 

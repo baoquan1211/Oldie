@@ -8,7 +8,7 @@ import "./Header.css";
 import USER from "../assets/svg/user.svg";
 
 const Header = () => {
-  const [name, setName] = useState(sessionStorage.getItem("name"));
+  const [name, setName] = useState(localStorage.getItem("name"));
   const [showmenu, setShowMenu] = useState(false);
 
   const navigate = useNavigate();
@@ -19,10 +19,10 @@ const Header = () => {
   }, [name]);
 
   const logout = () => {
-    sessionStorage.removeItem("username");
-    sessionStorage.removeItem("_id");
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("name");
+    localStorage.removeItem("username");
+    localStorage.removeItem("_id");
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
     setName(null);
     navigate("/");
   };
@@ -33,9 +33,9 @@ const Header = () => {
         <Link to="/home">
           <img src={LOGO} alt="Logo"></img>
         </Link>
-        <div className="flex items-center">
+        <div className="flex items-center gap-x-4">
           <a href="/cart">
-            <img src={CART} alt="Cart"></img>
+            <img srcSet={`${CART} 3.5x`} alt="Cart"></img>
           </a>
 
           {name !== null ? (

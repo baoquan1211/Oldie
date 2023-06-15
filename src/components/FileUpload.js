@@ -7,7 +7,6 @@ const FileUpload = ({ images, setImages }) => {
   const uploadHandle = (event) => {
     if (images.length < 4) {
       const image = event.target.files[0];
-      console.log(URL.createObjectURL(image));
       setImages([...images, image]);
     } else {
       toastr.error("Chỉ được chọn tối đa 4 ảnh.");
@@ -27,7 +26,7 @@ const FileUpload = ({ images, setImages }) => {
       <div className="bg-[#EDE4E4] rounded-[8px] w-full min-h-[275px] flex flex-col items-center justify-center relative">
         <div className="grid grid-flow-col justify-center gap-x-3 absolute top-5">
           {images.map((i) => (
-            <div className="relative" key={i}>
+            <div className="relative" key={i.name}>
               <img
                 src={URL.createObjectURL(i)}
                 className="h-[60px] w-[60px] border-[2px] rounded-[8px] border-[#ffb30e] p-2"

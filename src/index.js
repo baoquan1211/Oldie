@@ -25,6 +25,8 @@ import Footer from "./layouts/Footer";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import PostProduct from "./pages/PostProduct";
+import ProductDetail from "./pages/ProductDetail";
+import ProductSearch from "./pages/ProductSearch";
 
 const persistConfig = { key: "root", storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, authReducer);
@@ -51,6 +53,13 @@ root.render(
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/post" element={<PostProduct />}></Route>
+            <Route path="/product/:id" element={<ProductDetail />}></Route>
+            <Route
+              path="/search?name=:name?type=:type"
+              element={<ProductSearch />}
+            ></Route>
+            <Route path="/search/:name" element={<ProductSearch />}></Route>
+            <Route path="/search/:type" element={<ProductSearch />}></Route>
           </Routes>
           <Footer></Footer>
         </BrowserRouter>

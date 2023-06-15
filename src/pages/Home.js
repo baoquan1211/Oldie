@@ -9,10 +9,10 @@ import Feature from "../layouts/Feature";
 import TopProducts from "../layouts/TopProducts";
 
 const Home = () => {
-  const username = sessionStorage.getItem("username");
-  const _id = sessionStorage.getItem("_id");
-  const token = sessionStorage.getItem("token");
-  const [name, setName] = useState(sessionStorage.getItem("name"));
+  const username = localStorage.getItem("username");
+  const _id = localStorage.getItem("_id");
+  const token = localStorage.getItem("token");
+  const [name, setName] = useState(localStorage.getItem("name"));
 
   return (
     <>

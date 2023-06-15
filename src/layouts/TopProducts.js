@@ -8,28 +8,28 @@ import Button from "../components/Button";
 
 const Product_Items = [
   {
-    name: "Iphone 12promax 128GB",
-    value: "21",
+    TenSp: "Iphone 12promax 128GB",
+    Gia: "21",
     seller: P1,
-    image: IP12PM128GB,
+    HinhAnh: IP12PM128GB,
   },
   {
-    name: "Iphone 12promax 128GB",
-    value: "21",
+    TenSp: "Iphone 12promax 128GB",
+    Gia: "21",
     seller: P1,
-    image: IP12PM128GB,
+    HinhAnh: IP12PM128GB,
   },
   {
-    name: "Iphone 12promax 128GB",
-    value: "21",
+    TenSp: "Iphone 12promax 128GB",
+    Gia: "21",
     seller: P1,
-    image: IP12PM128GB,
+    HinhAnh: IP12PM128GB,
   },
   {
-    name: "Iphone 12promax 128GB",
-    value: "21",
+    TenSp: "Iphone 12promax 128GB",
+    Gia: "21",
     seller: P1,
-    image: IP12PM128GB,
+    HinhAnh: IP12PM128GB,
   },
 ];
 
@@ -48,7 +48,7 @@ const TopProducts = () => {
         <div className="mt-[80px]">
           <ProductShow value="star">{Product_Items}</ProductShow>
         </div>
-        <div className="mt-[80px] flex justify-center items-center">
+        <div className="mt-[40px] flex justify-center items-center">
           <Button className="bg-linearBtnBg w-[198px] h-[60px] text-[18px] font-secondaryFont font-bold text-white">
             Xem tất cả
             <img src={MORE} alt="More"></img>

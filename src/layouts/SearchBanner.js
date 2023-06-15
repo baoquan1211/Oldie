@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/Base.css";
 import DELIVERY from "../assets/images/delivery.png";
 import Button from "../components/Button";
 
 import SEARCH_ICON from "../assets/images/search2.png";
 import SEARCH_BANNER from "../assets/images/search_banner.png";
+import { useNavigate } from "react-router-dom";
 
 const SearchBanner = () => {
+  const [productSearch, setProductSearch] = useState("");
+  const navigate = useNavigate();
+  const searchHandle = () => {
+    navigate(`/search/${productSearch}`);
+  };
   return (
     <section className="bg-bgColor h-[587px] mt-[108px]">
       <div className="wrapper flex w-full justify-between">
@@ -25,11 +31,17 @@ const SearchBanner = () => {
             </div>
             <div className="justify-center flex items-center px-[24px] gap-x-2 ">
               <input
+                onChange={(e) => {
+                  setProductSearch(e.target.value);
+                }}
                 type="text"
                 placeholder={"Nhập sản phẩm"}
                 className="input-form bg-[#F5F5F5] w-full max-w-[641px] h-[49px] rounded-[8px] p-4 font-secondaryFont text-[#9E9E9E]"
               ></input>
-              <Button className="w-[194px] h-[60px] bg-Color2 text-[18px] font-bold font-primaryFont text-white gap-x-[10px]">
+              <Button
+                onClick={searchHandle}
+                className="w-[194px] h-[60px] bg-Color2 text-[18px] font-bold font-primaryFont text-white gap-x-[10px]"
+              >
                 <img src={SEARCH_ICON} alt="Search Icon"></img>Tìm kiếm
               </Button>
             </div>

@@ -7,7 +7,7 @@ import toastr from "toastr";
 import FACEBOOK from "../../assets/svg/facebook.svg";
 import GOOGLE from "../../assets/svg/google.svg";
 import APPLE from "../../assets/svg/apple.svg";
-import { userLogin } from "../../services/UserServices";
+import { userLogin } from "../../services/auth/AuthServices";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -23,10 +23,10 @@ const Login = () => {
     } else {
       let res = await userLogin(username, password);
       if (res && res.token) {
-        sessionStorage.setItem("token", res.token);
-        sessionStorage.setItem("username", res.user.username);
-        sessionStorage.setItem("_id", res.user._id);
-        sessionStorage.setItem("name", res.user.hoten);
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("username", res.user.username);
+        localStorage.setItem("_id", res.user._id);
+        localStorage.setItem("name", res.user.hoten);
         navigate("/home");
       } else {
         if (res && res.status === 400) {
