@@ -3,7 +3,7 @@ const Button = ({ children, className = "", link = "", onClick, ...props }) => {
     return (
       <a
         href={link}
-        className={`rounded-[8px] justify-center flex items-center gap-x-[12px] ${
+        className={`rounded-[8px] justify-center flex items-center gap-x-[12px]  ${
           className || ""
         }`}
         {...props}

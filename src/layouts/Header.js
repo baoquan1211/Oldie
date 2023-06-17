@@ -10,7 +10,7 @@ import USER from "../assets/svg/user.svg";
 const Header = () => {
   const [name, setName] = useState(localStorage.getItem("name"));
   const [showmenu, setShowMenu] = useState(false);
-
+  const _idUser = localStorage.getItem("_id");
   const navigate = useNavigate();
   useEffect(() => {
     if (name !== "") {
@@ -33,7 +33,7 @@ const Header = () => {
         <Link to="/home">
           <img src={LOGO} alt="Logo"></img>
         </Link>
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-4 pr-3">
           <a href="/cart">
             <img srcSet={`${CART} 3.5x`} alt="Cart"></img>
           </a>
@@ -50,24 +50,26 @@ const Header = () => {
               <div
                 className={`${
                   showmenu ? "" : "hidden"
-                } w-[142px] mt-[5px] h-[160px] rounded-[8px] text-center absolute right-0 flex flex-col items-center justify-center bg-white`}
+                } pl-5 pr-5 pt-3 pb-3 mt-[5px] rounded-[8px] text-center absolute right-0 flex flex-col items-center justify-center bg-white`}
               >
-                <div className="flex items-center h-[40px]">
-                  <h1 className="text-[#FFB800] font-primaryFont font-bold">
+                <div className="flex items-center min-h-[40px]">
+                  <h1 className="text-[#FFB800] w-max font-primaryFont font-bold">
                     Hi {name}
                   </h1>
                 </div>
+                <Link to={`/user/${_idUser}`}>
+                  <button className=" text-[#FFB800] h-[40px] font-primaryFont font-bold ">
+                    Tài khoản
+                  </button>
+                </Link>
                 <Link to="/post">
-                  <button className=" text-[#FFB800] h-[40px] font-primaryFont font-bold text-center text">
+                  <button className=" text-[#FFB800] h-[40px] font-primaryFont font-bold text-center">
                     Đăng bài
                   </button>
                 </Link>
-                <button className=" text-[#FFB800] h-[40px] font-primaryFont font-bold ">
-                  Bài đã đăng
-                </button>
                 <button
                   onClick={logout}
-                  className=" text-[#FFB800] h-[40px] font-primaryFont font-bold "
+                  className=" text-[#FFB800] min-h-[40px] font-primaryFont font-bold "
                 >
                   Đăng xuất
                 </button>
@@ -75,7 +77,7 @@ const Header = () => {
             </div>
           ) : (
             <a href="/login" alt="Login">
-              <Button className="h-[46px] w-[142px] text-[#FFB800] font-primaryFont font-bold gap-1 rounded-[8px] shadow-linearColor1 bg-white">
+              <Button className="h-[46px] w-[142px] text-[#FFB800] font-primaryFont font-bold gap-1 rounded-[8px] shadow-linearColor1 bg-white hover:bg-[#FFB800] hover:text-white">
                 Đăng nhập
               </Button>
             </a>

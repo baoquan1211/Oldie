@@ -8,4 +8,8 @@ const searchProduct = (name = "", type = "") => {
   return axios.get(`product/search?name=${name}&type=${type}`);
 };
 
-export { searchProduct, productDetail };
+const userDetail = (_idUser) => {
+  return axios.get(`/user/getUser/${_idUser}`);
+};
+
+export { searchProduct, productDetail, userDetail };

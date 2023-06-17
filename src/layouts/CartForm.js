@@ -23,6 +23,7 @@ const CartForm = () => {
     };
     fetchData();
   }, [_idUser]);
+
   if (cart) {
     return (
       <div className="wrapper mt-[30px] mb-[30px] flex gap-x-[30px]">

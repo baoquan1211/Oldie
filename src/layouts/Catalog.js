@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 import CIRCLE from "../assets/images/circle.png";
 import HOUSEHOLD from "../assets/images/household.png";
@@ -48,7 +48,7 @@ const Catalog = () => {
       <div className="wrapper flex items-center justify-center">
         <div className="grid grid-cols-6 justify-between gap-x-[120px] mt-12 max-w-[1438px] text-center">
           {Catalog_Items.map((item) => (
-            <a href="/" key={item.title}>
+            <Link to={`/search//${item.title}`} key={item.title}>
               <div className="grid grid-rows-2 gap-y-[90px] mt-[80px] max-w-[218px]">
                 <div className="flex flex-row items-center justify-center">
                   <img srcSet={CIRCLE} alt="Circle" className="absolute"></img>
@@ -62,7 +62,7 @@ const Catalog = () => {
                   {item.title}
                 </h2>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

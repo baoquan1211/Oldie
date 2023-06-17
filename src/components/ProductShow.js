@@ -11,6 +11,11 @@ const ProductShow = ({
   value = "",
   ...props
 }) => {
+  function intToVND(n) {
+    // format number 1000000 to 1.234.567
+    let result = String(n);
+    return result.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
   // eslint-disable-next-line eqeqeq
   if (value == "price") {
     return (
@@ -43,7 +48,7 @@ const ProductShow = ({
                     <div className="flex items-center gap-x-[5px]">
                       <img src={MONEY} alt="Money"></img>
                       <p className="font-secondaryFont font-bold text-[22px] text-[#FFB30E]">
-                        {item.Gia}
+                        {intToVND(item.Gia)}
                       </p>
                     </div>
                   </div>

@@ -1,5 +1,5 @@
 import Header from "../layouts/Header";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { productDetail } from "../services/guest/GuestServices";
 import { useEffect, useState } from "react";
 import MOVELEFT from "../assets/svg/moveleft.svg";
@@ -15,6 +15,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState({});
   const [seller, setSeller] = useState({});
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,22 +43,24 @@ const ProductDetail = () => {
     }
   };
 
-  const intToVND = (price) => {
-    let priceResult = price.toString();
-    //priceResult[priceResult.length - 3] = ".";
-    return priceResult;
-  };
+  function intToVND(n) {
+    // format number 1000000 to 1,234,567
+    let result = String(n);
+    return result.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
 
   const addCartHandle = async () => {
-    await addCart(_idUser, product._id).then((res) => {
-      if (res && res._id) {
-        console.log(res);
-        toastr.success("Thêm sản phẩm vào giỏ hàng thành công!");
-      } else {
-        console.log(res);
-        toastr.error("Có lỗi xảy ra, vui lòng đăng nhập và thử lại!");
-      }
-    });
+    if (_idUser) {
+      await addCart(_idUser, product._id).then((res) => {
+        if (res && res._id) {
+          toastr.success("Thêm sản phẩm vào giỏ hàng thành công!");
+        } else {
+          toastr.error("Có lỗi xảy ra, vui lòng đăng nhập và thử lại!");
+        }
+      });
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -94,14 +97,12 @@ const ProductDetail = () => {
         </div>
         <div className="flex flex-col rounded-[24px] bg-[#FCFCEE] w-[500px] justify-center items-center pt-3 pb-3">
           <div className="w-[400px]">
-            {console.log(product)}
-            {console.log(seller)}
             <h1 className="font-secondaryFont font-bold text-[54px] text-[#292D32]">
               {product.TenSp}
             </h1>
             <div className="flex justify-between">
               <h1 className="font-secondaryFont font-bold text-[30px] text-[#F59500]">
-                {product.Gia} VNĐ
+                {intToVND(product.Gia)} VNĐ
               </h1>
               <h1 className="font-secondaryFont font-semibold text-[30px] text-[#426B1F]">
                 Số lượng: {product.SoLuong}
@@ -133,13 +134,17 @@ const ProductDetail = () => {
         </div>
         <div className="flex flex-col gap-y-3 justify-center items-center w-[430px] h-[280px] rounded-[24px] bg-[#FCFCEE]">
           <div className="flex h-[50px] gap-x-[20px] justify-center items-center">
-            <img src={USER} alt="user" className="h-[40px]" />
-            <h1 className="font-secondaryFont font-bold text-[#FB3C00] text-[22px] min-w-[150px] text-center">
-              {seller.hoten}
-            </h1>
-            <button className="h-[41px] w-[100px] rounded-[8px] bg-linearBtnBg text-[18px] text-white font-secondaryFont font-bold ">
-              Xem trang
-            </button>
+            <div className="flex items-center">
+              <img src={USER} alt="user" className="h-[40px]" />
+              <h1 className="font-secondaryFont font-bold text-[#FB3C00] text-[22px] min-w-[150px] pl-3">
+                {seller.hoten}
+              </h1>
+            </div>
+            <Link to={`http://localhost:3000/user/${seller._id}`}>
+              <button className="h-[41px] w-[100px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303]">
+                Xem trang
+              </button>
+            </Link>
           </div>
           <div className="mt-[20px] flex items-center justify-center gap-2 w-[379px] h-[48px] rounded-[8px] bg-[#E6E6E6]">
             <img src={PHONE} alt="phone" />
@@ -149,7 +154,7 @@ const ProductDetail = () => {
           </div>
           <button
             onClick={addCartHandle}
-            className="w-[200px] h-[68px] rounded-[8px] mt-[10px] bg-[#F59500]  hover:bg-[#FFAD2D] active:bg-[#F09303]  font-secondaryFont font-bold text-white text-[22px]"
+            className="w-[200px] h-[68px] rounded-[8px] mt-[10px] bg-[#F59500]  hover:bg-[#FFAD2D] active:bg-[#F09303] font-secondaryFont font-bold text-white text-[22px]"
           >
             Thêm vào giỏ
           </button>

@@ -5,6 +5,7 @@ import IP12PM128GB from "../assets/images/ip12pm128.png";
 import P1 from "../assets/images/p1.png";
 import MORE from "../assets/svg/more.svg";
 import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 const Product_Items = [
   {
@@ -34,6 +35,12 @@ const Product_Items = [
 ];
 
 const TopProducts = () => {
+  const navigate = useNavigate();
+
+  const seeAllHandle = () => {
+    navigate("/search");
+  };
+
   return (
     <section className="h-[1274px]">
       <div className="wrapper text-center mt-[80px]">
@@ -49,7 +56,10 @@ const TopProducts = () => {
           <ProductShow value="star">{Product_Items}</ProductShow>
         </div>
         <div className="mt-[40px] flex justify-center items-center">
-          <Button className="bg-linearBtnBg w-[198px] h-[60px] text-[18px] font-secondaryFont font-bold text-white">
+          <Button
+            onClick={seeAllHandle}
+            className="bg-[#F59500] w-[198px] h-[60px] text-[18px] font-secondaryFont font-bold text-white hover:bg-[#FFAD2D] active:bg-[#F09303]"
+          >
             Xem tất cả
             <img src={MORE} alt="More"></img>
           </Button>

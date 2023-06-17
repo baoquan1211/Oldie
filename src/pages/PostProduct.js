@@ -22,32 +22,23 @@ const PostProduct = () => {
   const handleClick = async () => {
     if (catalog === "") {
       toastr.error("Vui lòng chọn danh mục sản phẩm!");
-    }
-    if (product === "") {
+    } else if (product === "") {
       toastr.error("Vui lòng điền tên sản phẩm!");
-    }
-    if (condition === "") {
+    } else if (condition === "") {
       toastr.error("Vui lòng điền tình trạng sản phẩm!");
-    }
-    if (brand === "") {
+    } else if (brand === "") {
       toastr.error("Vui lòng điền hãng sản xuất sản phẩm!");
-    }
-    if (amount === "") {
+    } else if (amount === "") {
       toastr.error("Vui lòng điền số lượng sản phẩm!");
-    }
-    if (price === "") {
+    } else if (price === "") {
       toastr.error("Vui lòng điền giá sản phẩm!");
-    }
-    if (address === "") {
+    } else if (address === "") {
       toastr.error("Vui lòng điền địa chỉ!");
-    }
-    if (phone === "") {
+    } else if (phone === "") {
       toastr.error("Vui lòng điền số điện thoại!");
-    }
-    if (discription === "") {
+    } else if (discription === "") {
       toastr.error("Vui lòng điền mô tả sản phẩm!");
-    }
-    if (images === "") {
+    } else if (images === "") {
       toastr.error("Vui lòng chọn ít nhất một ảnh sản phẩm!");
     } else {
       let res = await postProduct(
@@ -65,11 +56,9 @@ const PostProduct = () => {
       );
       if (res && res.status !== 500) {
         toastr.success("Đăng bài thành công!");
-        console.log(res);
         const idProduct = res._id;
         navigate(`/product/${idProduct}`);
       } else {
-        console.log(res);
         toastr.error("Có lỗi xảy ra. Vui lòng thử lại!");
       }
     }
@@ -103,12 +92,11 @@ const PostProduct = () => {
                 Danh mục bài đăng
               </h1>
               <select
+                defaultValue="Chọn danh mục của sản phẩm"
                 onChange={(e) => setCatalog(e.target.value)}
                 className="bg-[#CAC5C5] input-form w-[350px] h-[40px] rounded-[8px] pl-[15px] pr-[15px] font-primaryFont text-[18px] text-[#3E3838]"
               >
-                <option disabled selected>
-                  Chọn danh mục của sản phẩm
-                </option>
+                <option disabled>Chọn danh mục của sản phẩm</option>
                 <option value="Gia dụng">Gia dụng</option>
                 <option value="Thời trang">Thời trang</option>
                 <option value="Thể thao">Thể thao</option>

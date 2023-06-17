@@ -40,6 +40,12 @@ const CartProduct = ({
     }
   };
 
+  function intToVND(n) {
+    // format number 1000000 to 1.234.567
+    let result = String(n);
+    return result.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
   return (
     <div className="w-[880px] h-[160px] bg-[#FAFAF5] rounded-[24px] border-[2px] border-[#E6E6E6]">
       <div className="flex">
@@ -54,7 +60,7 @@ const CartProduct = ({
               {children.TenSp}
             </h1>
             <p className="font-primaryFont font-semibold text-[#426B1F]">
-              {children.Gia} VND
+              {intToVND(children.Gia)} VND
             </p>
             <div className="w-[170px] h-[40px] rounded-[30px] flex items-center border-[2px] border-[#E6E6E6]">
               <div className="font-secondaryFont font-bold text-[22px] text-[#FB3C00] w-[94px] text-center">
@@ -78,7 +84,7 @@ const CartProduct = ({
             className="font-primaryFont text-[20px] font-semibold"
             id={children._id}
           >
-            {pricePerProduct}đ
+            {intToVND(pricePerProduct)}đ
           </h1>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "../css/Base.css";
-import DELIVERY from "../assets/images/delivery.png";
+import DELIVERY from "../assets/svg/delivery.svg";
 import Button from "../components/Button";
 
 import SEARCH_ICON from "../assets/images/search2.png";
 import SEARCH_BANNER from "../assets/images/search_banner.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const SearchBanner = () => {
   const [productSearch, setProductSearch] = useState("");
@@ -25,9 +25,9 @@ const SearchBanner = () => {
           </h2>
           <div className="grid grid-row-2 items-center bg-white h-[195px] rounded-[16px] mt-[35px]">
             <div className="justify-left flex items-center px-[24px]">
-              <a href="/" s>
+              <Link to="/cart">
                 <img src={DELIVERY} alt="Delivery"></img>
-              </a>
+              </Link>
             </div>
             <div className="justify-center flex items-center px-[24px] gap-x-2 ">
               <input
@@ -40,7 +40,7 @@ const SearchBanner = () => {
               ></input>
               <Button
                 onClick={searchHandle}
-                className="w-[194px] h-[60px] bg-Color2 text-[18px] font-bold font-primaryFont text-white gap-x-[10px]"
+                className="w-[194px] h-[60px] bg-Color2 text-[18px] font-bold font-primaryFont text-white gap-x-[10px] hover:bg-[#FFAD2D] active:bg-[#F09303]"
               >
                 <img src={SEARCH_ICON} alt="Search Icon"></img>Tìm kiếm
               </Button>

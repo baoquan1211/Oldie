@@ -18,22 +18,28 @@ const Invoice = ({ totalPrice }) => {
   }, [totalPrice]);
 
   const voucherHandle = () => {
-    if (voucher === "QUAN" && !voucherUsed.current) {
+    if (voucher === "BETHAO" && !voucherUsed.current) {
       setTotalPay(totalPay - 50000);
       voucherUsed.current = true;
     }
   };
+
+  function intToVND(n) {
+    // format number 1000000 to 1.234.567
+    let result = String(n);
+    return result.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
 
   return (
     <div className="flex flex-col bg-[#FAFAF5] w-[430px] p-[24px] gap-y-[20px] rounded-[24px]">
       <h1 className="font-primaryFont text-[20px] font-semibold">Hóa đơn</h1>
       <div className="flex justify-between text-[16px] font-primaryFont mt-[10px]">
         <h2>Thành tiền</h2>
-        <h2>{totalPrice}đ</h2>
+        <h2>{intToVND(totalPrice)}đ</h2>
       </div>
       <div className="flex justify-between text-[16px] font-primaryFont">
         <h2>Phí vận chuyển</h2>
-        <h2>{shippingFee}đ</h2>
+        <h2>{intToVND(shippingFee)}đ</h2>
       </div>
       <div className="flex justify-center gap-x-[16px] items-center ">
         <input
@@ -45,17 +51,17 @@ const Invoice = ({ totalPrice }) => {
         ></input>
         <button
           onClick={voucherHandle}
-          className="h-[41px] w-[82px] rounded-[8px] bg-linearBtnBg text-[18px] text-white font-secondaryFont font-bold "
+          className="h-[41px] w-[82px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303]"
         >
           Sử dụng
         </button>
       </div>
       <div className="flex justify-between text-[16px] font-primaryFont font-bold">
         <h2>Tổng tiền</h2>
-        <h2>{totalPay}đ</h2>
+        <h2>{intToVND(totalPay)}đ</h2>
       </div>
       <div className="flex justify-center mt-[10px]">
-        <button className="h-[48px] w-[380px] rounded-[8px] bg-linearBtnBg text-[18px] text-white font-secondaryFont font-bold ">
+        <button className="h-[48px] w-[380px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303]">
           <div className="flex justify-between items-center pr-[16px] pl-[16px]">
             <h2>Thanh toán</h2>
             <img src={ARROW} alt="arrow"></img>

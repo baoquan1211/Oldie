@@ -7,9 +7,10 @@ import { searchProduct } from "../services/guest/GuestServices";
 const ProductSearch = () => {
   const searchItem = useParams();
   const [result, setResult] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
-      await searchProduct(searchItem.name).then((res) => {
+      await searchProduct(searchItem.name, searchItem.type).then((res) => {
         setResult(res);
       });
     };
@@ -18,7 +19,6 @@ const ProductSearch = () => {
   return (
     <>
       <Header></Header>
-      {console.log(result)}
       <div className="flex justify-center">
         <div className="mt-[108px] wrapper items-center pt-[70px] pb-[70px]">
           <ProductShow value="price">{result}</ProductShow>
