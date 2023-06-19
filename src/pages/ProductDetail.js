@@ -77,7 +77,7 @@ const ProductDetail = () => {
             <img
               src={product.HinhAnh[index]}
               alt="productpicture"
-              className="h-[400px]"
+              className="h-[400px] max-w-[390px]"
             />
           )}
           <button onClick={moveLeft}>

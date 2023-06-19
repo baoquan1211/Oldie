@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import LEFT from "../assets/svg/left.svg";
 import RIGHT from "../assets/svg/right.svg";
+import ERASE from "../assets/images/delete.png";
+import { Link } from "react-router-dom";
 
 const CartProduct = ({
   children,
@@ -48,17 +50,23 @@ const CartProduct = ({
 
   return (
     <div className="w-[880px] h-[160px] bg-[#FAFAF5] rounded-[24px] border-[2px] border-[#E6E6E6]">
-      <div className="flex">
+      <div className="flex relative">
         <div className="flex items-center w-full">
-          <img
-            srcSet={children.HinhAnh[0]}
-            alt="product_img"
-            className="rounded-[24px] max-h-[156px]"
-          ></img>
+          <div className="flex items-center">
+            <Link to={`/product/${children._id}`}>
+              <img
+                srcSet={children.HinhAnh[0]}
+                alt="product_img"
+                className="rounded-[24px] max-h-[156px] max-w-[156px]"
+              ></img>
+            </Link>
+          </div>
           <div className="ml-[30px] flex gap-y-[5px] flex-col w-full">
-            <h1 className="font-primaryFont font-semibold text-[20px]">
-              {children.TenSp}
-            </h1>
+            <Link to={`/product/${children._id}`}>
+              <h1 className="font-primaryFont font-semibold text-[20px]">
+                {children.TenSp}
+              </h1>
+            </Link>
             <p className="font-primaryFont font-semibold text-[#426B1F]">
               {intToVND(children.Gia)} VND
             </p>
@@ -79,7 +87,7 @@ const CartProduct = ({
             </div>
           </div>
         </div>
-        <div className="p-[26px] flex">
+        <div className="p-[26px] flex items-center">
           <h1
             className="font-primaryFont text-[20px] font-semibold"
             id={children._id}
@@ -87,6 +95,9 @@ const CartProduct = ({
             {intToVND(pricePerProduct)}đ
           </h1>
         </div>
+        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+          <img src={ERASE} alt="erase" className="w-4" />
+        </button>
       </div>
     </div>
   );

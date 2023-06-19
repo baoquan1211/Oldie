@@ -1,45 +1,46 @@
-import React from "react";
-
-import IP12PM128GB from "../assets/images/ip12pm128.png";
-import P1 from "../assets/images/p1.png";
+import { useState, useEffect } from "react";
+import { searchProduct } from "../services/guest/GuestServices";
+import { useNavigate } from "react-router-dom";
 import ProductShow from "../components/ProductShow";
-
-const Product_Items = [
-  {
-    TenSp: "Iphone 12promax 128GB",
-    Gia: "13.300.000",
-    seller: P1,
-    HinhAnh: [IP12PM128GB],
-  },
-  {
-    TenSp: "Iphone 12promax 128GB",
-    Gia: "13.300.000",
-    seller: P1,
-    HinhAnh: [IP12PM128GB],
-  },
-  {
-    TenSp: "Iphone 12promax 128GB",
-    Gia: "13.300.000",
-    seller: P1,
-    HinhAnh: [IP12PM128GB],
-  },
-  {
-    TenSp: "Iphone 12promax 128GB",
-    Gia: "13.300.000",
-    seller: P1,
-    HinhAnh: [IP12PM128GB],
-  },
-];
+import MORE from "../assets/svg/more.svg";
+import Button from "../components/Button";
 
 const NewPost = () => {
+  const [result, setResult] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await searchProduct().then((res) => {
+        setResult(res);
+      });
+    };
+    fetchData();
+  }, []);
+
+  const seeAllHandle = () => {
+    navigate("/search");
+  };
+
   return (
-    <section className="h-[640px] bg-white mt-[80px]">
+    <section className=" bg-white mt-[80px] mb-[50px]">
       <div className="wrapper justify-center text-center">
         <h1 className="font-secondaryFont font-bold text-[43px]">
           Bài viết mới đăng
         </h1>
         <div className="mt-[40px]">
-          <ProductShow value="price">{Product_Items}</ProductShow>
+          <ProductShow value="price" nums={8}>
+            {result}
+          </ProductShow>
+        </div>
+        <div className="mt-[40px] flex justify-center items-center">
+          <Button
+            onClick={seeAllHandle}
+            className="bg-[#F59500] w-[198px] h-[60px] text-[18px] font-secondaryFont font-bold text-white hover:bg-[#FFAD2D] active:bg-[#F09303]"
+          >
+            Xem tất cả
+            <img src={MORE} alt="More"></img>
+          </Button>
         </div>
       </div>
     </section>

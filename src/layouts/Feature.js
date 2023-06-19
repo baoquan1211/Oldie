@@ -1,5 +1,3 @@
-import React from "react";
-
 import FEATURE1 from "../assets/images/feature_1.png";
 import FEATURE2 from "../assets/images/feature_2.png";
 import FEATURE3 from "../assets/images/feature_3.png";
@@ -11,12 +9,12 @@ const Feature_Items = [
     image: FEATURE1,
   },
   {
-    title1: "Theo dõi",
-    title2: " trực tiếp",
+    title1: "Giao hàng",
+    title2: "tập nơi",
     image: FEATURE2,
   },
   {
-    title1: "Giao hàng",
+    title1: "Mua hàng",
     title2: "nhanh chóng",
     image: FEATURE3,
   },

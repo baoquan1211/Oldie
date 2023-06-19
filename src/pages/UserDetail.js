@@ -1,23 +1,57 @@
 import { useState, useEffect } from "react";
-import Header from "../layouts/Header";
+import { useNavigate, useParams } from "react-router-dom";
 import { userDetail } from "../services/guest/GuestServices";
+import Header from "../layouts/Header";
+import PostedProduct from "../components/PostedProduct";
 import MAIL from "../assets/images/mail.png";
 import PHONE from "../assets/images/phone.png";
 import USER from "../assets/svg/user_avt.svg";
 import ARROW from "../assets/svg/arrow.svg";
+import CAMERA from "../assets/svg/camera_black.svg";
+import Button from "../components/Button";
+import EMPTY_CART from "../assets/images/empty-cart.png";
+import EMPTY_PRODUCT from "../assets/svg/emptyproduct.svg";
+import { updateUser } from "../services/user/UserServices";
+import toastr from "toastr";
 
 const UserDetail = () => {
-  const _idUser = localStorage.getItem("_id");
+  const _idUser = useParams();
   const [user, setUser] = useState({});
+  const [product, setProduct] = useState([]);
+  const [order, setOrder] = useState([]);
+  const [name, setName] = useState(user.hoten);
+  const [gender, setGender] = useState(user.gioitinh);
+  const [phone, setPhone] = useState(user.SDT);
+  const [email, setEmail] = useState(user.email);
+  const [address, setAddress] = useState(user.diachi);
+  const [defaultavatar, setDefaultAvatar] = useState(user.hinhanh);
+  const [avatar, setAvatar] = useState();
+  const [show, setShow] = useState("postedproduct");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      await userDetail(_idUser).then((res) => {
-        setUser(res);
+      await userDetail(_idUser.id).then((res) => {
+        setUser(res._userInf);
+        setProduct(res._userProduct);
+        setDefaultAvatar(user.hinhanh);
+        setName(user.hoten);
+        setPhone(user.SDT);
+        setEmail(user.email);
+        setAddress(user.diachi);
+        setGender(user.gioitinh);
       });
     };
     fetchData();
-  }, [_idUser]);
+  }, [
+    _idUser,
+    user.hoten,
+    user.hinhanh,
+    user.SDT,
+    user.email,
+    user.diachi,
+    user.gioitinh,
+  ]);
 
   const dateHandle = (date) => {
     let result = String(date);
@@ -30,12 +64,36 @@ const UserDetail = () => {
     );
   };
 
+  const updateUserHandle = async () => {
+    let res = await updateUser(
+      _idUser.id,
+      name,
+      gender,
+      phone,
+      address,
+      avatar
+    );
+    if (res && res.message === "Updated Successfully") {
+      toastr.success("Cập nhật dữ liệu người dùng thành công");
+      navigate(`/user/${_idUser.id}`);
+    } else {
+      toastr.error("Có lỗi xảy ra. Vui lòng thử lại");
+    }
+  };
   return (
     <>
       <Header></Header>
-      <div className="wrapper flex justify-center mt-[108px] p-10">
+      <div className="wrapper flex justify-center mt-[108px] p-10 gap-x-[50px]">
         <div className="bg-[#FAFAF5] p-8 rounded-[24px]">
-          <img src={USER} alt="user" />
+          {defaultavatar ? (
+            <img
+              src={defaultavatar}
+              alt="user"
+              className="rounded-[180px] h-[150px] w-[150px]"
+            />
+          ) : (
+            <img src={USER} alt="user" />
+          )}
           <h1 className="font-secondaryFont font-bold text-[30px] text-[#FB3C00]">
             {user.hoten}
           </h1>
@@ -60,12 +118,173 @@ const UserDetail = () => {
               SĐT: <span>{user.SDT}</span>
             </h1>
           </div>
-          <button className="mt-3 h-[48px] w-[380px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303]">
-            <div className="flex justify-between items-center pr-[16px] pl-[16px]">
-              <h2>Chỉnh sửa thông tin cá nhân</h2>
-              <img src={ARROW} alt="arrow"></img>
+          <a href="#changeInfoUser">
+            <button className="mt-3 h-[48px] w-[400px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303]">
+              <div className="flex justify-between items-center pr-[16px] pl-[16px]">
+                <h2>Chỉnh sửa thông tin cá nhân</h2>
+                <img src={ARROW} alt="arrow"></img>
+              </div>
+            </button>
+          </a>
+          <dialog id="changeInfoUser" className="modal">
+            <form method="dialog" className="modal-box">
+              <a
+                href="#"
+                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+              >
+                ✕
+              </a>
+              <div className="flex justify-center items-center flex-col gap-y-3">
+                <div className="rounded-[180px] h-[180px] w-[180px] bg-[#D9D9D9] relative"></div>
+                {defaultavatar ? (
+                  <img
+                    src={avatar ? URL.createObjectURL(avatar) : USER}
+                    alt="avatar"
+                    className="h-[150px] w-[150px] rounded-[180px] border-solid absolute top-10 opacity-50"
+                  />
+                ) : (
+                  <img
+                    src={defaultavatar}
+                    alt="avatar"
+                    className="h-[150px] w-[150px] rounded-[180px] border-solid absolute top-10 opacity-50"
+                  />
+                )}
+                <img
+                  src={CAMERA}
+                  alt="camera"
+                  className="absolute top-[85px]"
+                />
+                <input
+                  onChange={(e) => setAvatar(e.target.files[0])}
+                  type="file"
+                  accept="file"
+                  className="absolute rounded-[180px] h-[150px] w-[150px] opacity-0 cursor-pointer z-10 top-10"
+                />
+                <div>
+                  <label className="font-primaryFont text-[18px]">Họ tên</label>
+                  <input
+                    onChange={(e) => setName(e.target.value)}
+                    defaultValue={user.hoten}
+                    className="bg-[#CAC5C5] input-form w-[464px] h-[40px] rounded-[8px] pl-[15px] pr-[15px] font-primaryFont text-[18px] text-[#3E3838] placeholder-[#3E3838] placeholder-[18px]"
+                  ></input>
+                </div>
+                <div className="flex justify-between gap-x-[64px]">
+                  <div className="flex flex-col">
+                    <label className="font-primaryFont text-[18px]">
+                      Số điện thoại
+                    </label>
+                    <input
+                      onChange={(e) => setPhone(e.target.value)}
+                      defaultValue={user.SDT}
+                      className="bg-[#CAC5C5] input-form w-[290px] h-[40px] rounded-[8px] pl-[15px] pr-[15px] font-primaryFont text-[18px] text-[#3E3838] placeholder-[#3E3838] placeholder-[18px]"
+                    ></input>
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="font-primaryFont text-[18px]">
+                      Giới tính
+                    </label>
+                    <select
+                      onChange={(e) => setGender(e.target.value)}
+                      defaultValue={user.gioitinh ? user.gioitinh : "Nam"}
+                      className=" bg-[#CAC5C5] w-[110px] h-[40px] rounded-[8px] pl-[15px] pr-[15px] font-primaryFont text-[18px] text-[#3E3838] cursor-pointer"
+                    >
+                      <option>Nam</option>
+                      <option>Nữ</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label className="font-primaryFont text-[18px]">Email</label>
+                  <input
+                    onChange={(e) => setEmail(e.target.value)}
+                    defaultValue={user.email}
+                    className="bg-[#CAC5C5] input-form w-[464px] h-[40px] rounded-[8px] pl-[15px] pr-[15px] font-primaryFont text-[18px] text-[#3E3838] placeholder-[#3E3838] placeholder-[18px]"
+                  ></input>
+                </div>
+                <div>
+                  <label className="font-primaryFont text-[18px]">
+                    Địa chỉ
+                  </label>
+                  <input
+                    onChange={(e) => setAddress(e.target.value)}
+                    defaultValue={user.diachi}
+                    className="bg-[#CAC5C5] input-form w-[464px] h-[40px] rounded-[8px] pl-[15px] pr-[15px] font-primaryFont text-[18px] text-[#3E3838] placeholder-[#3E3838] placeholder-[18px]"
+                  ></input>
+                </div>
+                <button
+                  onClick={updateUserHandle}
+                  className="w-[200px] h-[68px] rounded-[8px] mt-[10px] bg-[#F59500]  hover:bg-[#FFAD2D] active:bg-[#F09303] font-secondaryFont font-bold text-white text-[22px]"
+                >
+                  Lưu thay đổi
+                </button>
+              </div>
+            </form>
+          </dialog>
+        </div>
+        <div className="flex flex-col p-8 rounded-[8px] border-dashed border-[#FFB800] border-[2px] gap-y-3 h-fit">
+          <div className="flex">
+            <div className="pr-[50px] border-r-[#FFB800] border-r-[2px]">
+              <Button
+                onClick={() => {
+                  setShow("postedproduct");
+                }}
+                className={`h-[70px] w-[230px] font-primaryFont font-bold rounded-[8px] border-[#FFB800] border-[2px] ${
+                  show === "postedproduct"
+                    ? "text-white bg-[#FFB800] hover:bg-white hover:text-[#FFB800]"
+                    : "text-[#FFB800] bg-white hover:bg-[#FFB800] hover:text-white"
+                }`}
+              >
+                Đang bán
+              </Button>
             </div>
-          </button>
+            <div className="pl-[50px]">
+              <Button
+                onClick={() => {
+                  setShow("order");
+                }}
+                className={`h-[70px] w-[230px] font-primaryFont font-bold rounded-[8px] border-[#FFB800] border-[2px] ${
+                  show === "order"
+                    ? "text-white bg-[#FFB800] hover:bg-white hover:text-[#FFB800]"
+                    : "text-[#FFB800] bg-white hover:bg-[#FFB800] hover:text-white"
+                }`}
+              >
+                Đã đặt
+              </Button>
+            </div>
+          </div>
+          <div className="flex flex-col h-fit gap-y-3">
+            {show === "postedproduct" ? (
+              product.length > 0 ? (
+                product.map((item) => (
+                  <PostedProduct key={item._id}>{item}</PostedProduct>
+                ))
+              ) : (
+                <div className="flex flex-col items-center justify-center p-8">
+                  <img
+                    src={EMPTY_PRODUCT}
+                    alt="emptycart"
+                    className="max-w-[240px]"
+                  ></img>
+                  <h1 className="font-secondaryFont font-bold text-[26px]">
+                    Bạn chưa đăng sản phẩm nào
+                  </h1>
+                </div>
+              )
+            ) : order.length > 0 ? (
+              <div></div>
+            ) : (
+              <div className="flex flex-col items-center justify-center p-8">
+                <img
+                  src={EMPTY_CART}
+                  alt="emptycart"
+                  className="max-w-[240px] opacity-60"
+                ></img>
+                <h1 className="font-secondaryFont font-bold text-[26px]">
+                  Bạn chưa đặt sản phẩm nào
+                </h1>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

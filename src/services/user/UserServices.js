@@ -39,4 +39,14 @@ const addCart = (_idUser, _idP) => {
 const getCart = (_id) => {
   return axios.get(`user/getCart/${_id}`);
 };
-export { postProduct, addCart, getCart };
+const updateUser = (_id, name, gender, phone, address, avatar) => {
+  const data = new FormData();
+  console.log({ _id, name, gender, phone, address, avatar });
+  data.append("hoten", name);
+  data.append("pictures", avatar);
+  data.append("gioitinh", gender);
+  data.append("diachi", address);
+  data.append("SDT", phone);
+  return axios.patch(`user/update/${_id}`, data);
+};
+export { postProduct, addCart, getCart, updateUser };

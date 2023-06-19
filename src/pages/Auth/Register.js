@@ -14,7 +14,6 @@ const Register = () => {
 
   const Register = async () => {
     let res = await userRegister(username, password, hoten, SDT, email);
-    console.log({ username, password, hoten, SDT, email });
     if (res.message === "Register succesfully") {
       console.log("Đăng ký thành công!");
       setMessage("Đăng ký thành công!");

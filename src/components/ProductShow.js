@@ -9,8 +9,12 @@ const ProductShow = ({
   className = "",
   link = "",
   value = "",
+  nums = undefined,
   ...props
 }) => {
+  if (nums) {
+    children = children.slice(0, 8);
+  }
   function intToVND(n) {
     // format number 1000000 to 1.234.567
     let result = String(n);
@@ -19,10 +23,14 @@ const ProductShow = ({
   // eslint-disable-next-line eqeqeq
   if (value == "price") {
     return (
-      <div className="grid grid-cols-4 gap-x-[20px] gap-y-[20px]">
+      <div className={`grid grid-cols-4 gap-x-[20px] gap-y-[20px]`}>
         {children.map((item) => (
-          <a href={`/product/${item._id}`} key={item._id}>
-            <div className="flex flex-col gap-y-[20px] bg-[#FCFCEE] rounded-[16px] p-3">
+          <a
+            href={`/product/${item._id}`}
+            key={item._id}
+            className="max-w-[342.25px]"
+          >
+            <div className="flex flex-col  gap-y-[20px] bg-[#FCFCEE] rounded-[16px] p-3 ">
               <div>
                 {item.HinhAnh[0] ? (
                   <img

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import toastr from "toastr";
 import IMAGE from "../assets/svg/camera.svg";
 import ERASE from "../assets/images/cancel.png";
@@ -18,9 +17,7 @@ const FileUpload = ({ images, setImages }) => {
     updateList.splice(updateList.indexOf(item));
     setImages(updateList);
   };
-  useEffect(() => {
-    console.log(images);
-  }, [images]);
+
   return (
     <div>
       <div className="bg-[#EDE4E4] rounded-[8px] w-full min-h-[275px] flex flex-col items-center justify-center relative">
