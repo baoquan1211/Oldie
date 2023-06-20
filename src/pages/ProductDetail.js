@@ -135,7 +135,11 @@ const ProductDetail = () => {
         <div className="flex flex-col gap-y-3 justify-center items-center w-[430px] h-[280px] rounded-[24px] bg-[#FCFCEE]">
           <div className="flex h-[50px] gap-x-[20px] justify-center items-center">
             <div className="flex items-center">
-              <img src={USER} alt="user" className="h-[40px]" />
+              {seller.hinhanh ? (
+                <img src={seller.hinhanh} alt="user" className="h-[50px]" />
+              ) : (
+                <img src={USER} alt="user" className="h-[50px]" />
+              )}
               <h1 className="font-secondaryFont font-bold text-[#FB3C00] text-[22px] min-w-[150px] pl-3">
                 {seller.hoten}
               </h1>

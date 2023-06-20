@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-
+import { removeItemCart } from "../services/user/UserServices";
 import LEFT from "../assets/svg/left.svg";
 import RIGHT from "../assets/svg/right.svg";
 import ERASE from "../assets/images/delete.png";
 import { Link } from "react-router-dom";
+import toastr from "toastr";
 
 const CartProduct = ({
   children,
   pricePerId,
-  totalPrice,
   setTotalPrice,
   numPerId,
+  cart,
+  setCart,
 }) => {
+  const _iduser = localStorage.getItem("_id");
   const [numProduct, setNumProduct] = useState(numPerId);
 
   const plusPriceHandle = (accumulator, currentValue) => {
@@ -35,18 +38,31 @@ const CartProduct = ({
 
   const Increase = () => {
     setNumProduct(numProduct + 1);
+    let temp = cart;
+    temp.cartItem.forEach((item) => {
+      if (item._idSp === children._id) {
+        item.amount++;
+      }
+      setCart(temp);
+    });
   };
   const Decrease = () => {
     if (numProduct > 1) {
       setNumProduct(numProduct - 1);
+      const temp = cart;
+      temp.cartItem.forEach((item) => {
+        if (item._idSp === children._id) {
+          item.amount--;
+        }
+        setCart(temp);
+      });
     }
   };
 
-  function intToVND(n) {
-    // format number 1000000 to 1.234.567
+  const intToVND = (n) => {
     let result = String(n);
     return result.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  }
+  };
 
   return (
     <div className="w-[880px] h-[160px] bg-[#FAFAF5] rounded-[24px] border-[2px] border-[#E6E6E6]">
@@ -57,7 +73,7 @@ const CartProduct = ({
               <img
                 srcSet={children.HinhAnh[0]}
                 alt="product_img"
-                className="rounded-[24px] max-h-[156px] max-w-[156px]"
+                className="rounded-[24px] w-[230px] h-[156px]"
               ></img>
             </Link>
           </div>
@@ -95,7 +111,17 @@ const CartProduct = ({
             {intToVND(pricePerProduct)}đ
           </h1>
         </div>
-        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+        <button
+          onClick={async () => {
+            await removeItemCart(_iduser, children._id).then((res) => {
+              toastr.success("Xóa sản phẩm khỏi đơn hàng thành công");
+              setTimeout(() => {
+                document.location.reload();
+              }, 800);
+            });
+          }}
+          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+        >
           <img src={ERASE} alt="erase" className="w-4" />
         </button>
       </div>

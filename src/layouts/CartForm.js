@@ -24,7 +24,7 @@ const CartForm = () => {
     fetchData();
   }, [_idUser]);
 
-  if (cart) {
+  if (products.length > 0) {
     return (
       <div className="wrapper mt-[30px] mb-[30px] flex gap-x-[30px]">
         <div className="flex flex-col gap-y-[15px]">
@@ -35,12 +35,18 @@ const CartForm = () => {
               pricePerId={pricePerId}
               totalPrice={totalPrice}
               setTotalPrice={setTotalPrice}
+              cart={cart}
+              setCart={setCart}
             >
               {item}
             </CartProduct>
           ))}
         </div>
-        <Invoice pricePerId={pricePerId} totalPrice={totalPrice}></Invoice>
+        <Invoice
+          pricePerId={pricePerId}
+          totalPrice={totalPrice}
+          cart={cart}
+        ></Invoice>
       </div>
     );
   } else {

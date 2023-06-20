@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { userDetail } from "../services/guest/GuestServices";
 import Header from "../layouts/Header";
 import PostedProduct from "../components/PostedProduct";
@@ -11,10 +11,12 @@ import CAMERA from "../assets/svg/camera_black.svg";
 import Button from "../components/Button";
 import EMPTY_CART from "../assets/images/empty-cart.png";
 import EMPTY_PRODUCT from "../assets/svg/emptyproduct.svg";
-import { updateUser } from "../services/user/UserServices";
+import { getOrder, updateUser } from "../services/user/UserServices";
 import toastr from "toastr";
+import OrderShow from "../components/OrderShow";
 
 const UserDetail = () => {
+  const _id = localStorage.getItem("_id");
   const _idUser = useParams();
   const [user, setUser] = useState({});
   const [product, setProduct] = useState([]);
@@ -27,10 +29,9 @@ const UserDetail = () => {
   const [defaultavatar, setDefaultAvatar] = useState(user.hinhanh);
   const [avatar, setAvatar] = useState();
   const [show, setShow] = useState("postedproduct");
-  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchUser = async () => {
       await userDetail(_idUser.id).then((res) => {
         setUser(res._userInf);
         setProduct(res._userProduct);
@@ -42,7 +43,7 @@ const UserDetail = () => {
         setGender(user.gioitinh);
       });
     };
-    fetchData();
+    fetchUser();
   }, [
     _idUser,
     user.hoten,
@@ -51,7 +52,19 @@ const UserDetail = () => {
     user.email,
     user.diachi,
     user.gioitinh,
+    order,
   ]);
+
+  useEffect(() => {
+    const fetchOrder = async () => {
+      if (_id === _idUser.id) {
+        await getOrder(_id).then((res) => {
+          setOrder(res);
+        });
+      }
+    };
+    fetchOrder();
+  }, [_idUser, _id]);
 
   const dateHandle = (date) => {
     let result = String(date);
@@ -71,11 +84,14 @@ const UserDetail = () => {
       gender,
       phone,
       address,
+      email,
       avatar
     );
     if (res && res.message === "Updated Successfully") {
       toastr.success("Cập nhật dữ liệu người dùng thành công");
-      navigate(`/user/${_idUser.id}`);
+      setTimeout(() => {
+        document.location.reload();
+      }, 800);
     } else {
       toastr.error("Có lỗi xảy ra. Vui lòng thử lại");
     }
@@ -84,7 +100,7 @@ const UserDetail = () => {
     <>
       <Header></Header>
       <div className="wrapper flex justify-center mt-[108px] p-10 gap-x-[50px]">
-        <div className="bg-[#FAFAF5] p-8 rounded-[24px]">
+        <div className="bg-[#FAFAF5] p-8 rounded-[24px] h-fit">
           {defaultavatar ? (
             <img
               src={defaultavatar}
@@ -118,14 +134,16 @@ const UserDetail = () => {
               SĐT: <span>{user.SDT}</span>
             </h1>
           </div>
-          <a href="#changeInfoUser">
-            <button className="mt-3 h-[48px] w-[400px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303]">
-              <div className="flex justify-between items-center pr-[16px] pl-[16px]">
-                <h2>Chỉnh sửa thông tin cá nhân</h2>
-                <img src={ARROW} alt="arrow"></img>
-              </div>
-            </button>
-          </a>
+          {_id === _idUser.id && (
+            <a href="#changeInfoUser">
+              <button className="mt-3 h-[48px] w-[400px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303]">
+                <div className="flex justify-between items-center pr-[16px] pl-[16px]">
+                  <h2>Chỉnh sửa thông tin cá nhân</h2>
+                  <img src={ARROW} alt="arrow"></img>
+                </div>
+              </button>
+            </a>
+          )}
           <dialog id="changeInfoUser" className="modal">
             <form method="dialog" className="modal-box">
               <a
@@ -136,7 +154,7 @@ const UserDetail = () => {
               </a>
               <div className="flex justify-center items-center flex-col gap-y-3">
                 <div className="rounded-[180px] h-[180px] w-[180px] bg-[#D9D9D9] relative"></div>
-                {defaultavatar ? (
+                {avatar ? (
                   <img
                     src={avatar ? URL.createObjectURL(avatar) : USER}
                     alt="avatar"
@@ -239,20 +257,23 @@ const UserDetail = () => {
             </div>
             <div className="pl-[50px]">
               <Button
+                disabled={_id === _idUser.id ? false : true}
                 onClick={() => {
                   setShow("order");
                 }}
                 className={`h-[70px] w-[230px] font-primaryFont font-bold rounded-[8px] border-[#FFB800] border-[2px] ${
-                  show === "order"
-                    ? "text-white bg-[#FFB800] hover:bg-white hover:text-[#FFB800]"
-                    : "text-[#FFB800] bg-white hover:bg-[#FFB800] hover:text-white"
+                  _id === _idUser.id
+                    ? show === "order"
+                      ? "text-white bg-[#FFB800] hover:bg-white hover:text-[#FFB800]"
+                      : "text-[#FFB800] bg-white hover:bg-[#FFB800] hover:text-white"
+                    : "bg-gray-300 border-gray-400 cursor-pointer"
                 }`}
               >
                 Đã đặt
               </Button>
             </div>
           </div>
-          <div className="flex flex-col h-fit gap-y-3">
+          <div className="flex flex-col h-fit gap-y-3 mt-5">
             {show === "postedproduct" ? (
               product.length > 0 ? (
                 product.map((item) => (
@@ -266,21 +287,22 @@ const UserDetail = () => {
                     className="max-w-[240px]"
                   ></img>
                   <h1 className="font-secondaryFont font-bold text-[26px]">
-                    Bạn chưa đăng sản phẩm nào
+                    Chưa có sản phẩm nào được đăng
                   </h1>
                 </div>
               )
             ) : order.length > 0 ? (
-              <div></div>
+              <OrderShow _idUser={_id}></OrderShow>
             ) : (
               <div className="flex flex-col items-center justify-center p-8">
+                {console.log(order)}
                 <img
                   src={EMPTY_CART}
                   alt="emptycart"
                   className="max-w-[240px] opacity-60"
                 ></img>
                 <h1 className="font-secondaryFont font-bold text-[26px]">
-                  Bạn chưa đặt sản phẩm nào
+                  Chưa có sản phẩm nào được đặt
                 </h1>
               </div>
             )}

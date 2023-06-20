@@ -1,4 +1,11 @@
-const Button = ({ children, className = "", link = "", onClick, ...props }) => {
+const Button = ({
+  disabled = false,
+  children,
+  className = "",
+  link = "",
+  onClick,
+  ...props
+}) => {
   if (link.length > 0) {
     return (
       <a
@@ -14,6 +21,7 @@ const Button = ({ children, className = "", link = "", onClick, ...props }) => {
   }
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
       className={`rounded-[8px] justify-center flex items-center gap-x-[12px] ${
         className || ""
