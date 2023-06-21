@@ -20,7 +20,7 @@ const PostedProduct = ({ children }) => {
               ></img>
             </div>
             <div className="ml-[30px] flex gap-y-[5px] flex-col w-full">
-              <h1 className="font-primaryFont font-semibold text-[20px]">
+              <h1 className="font-primaryFont font-semibold text-[20px] text-black">
                 {children.TenSp}
               </h1>
               <p className="font-primaryFont font-semibold text-[#426B1F]">
