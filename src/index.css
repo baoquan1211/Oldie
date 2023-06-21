@@ -8,3 +8,9 @@
   width: 100%;
   margin-inline: auto;
 }
+
+@media only screen and (max-width: 414px) {
+  .body {
+    zoom: 10%;
+  }
+}
