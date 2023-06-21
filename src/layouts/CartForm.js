@@ -24,31 +24,43 @@ const CartForm = () => {
     fetchData();
   }, [_idUser]);
 
-  if (products.length > 0) {
-    return (
-      <div className="wrapper mt-[30px] mb-[30px] flex gap-x-[30px]">
-        <div className="flex flex-col gap-y-[15px]">
-          {products.map((item, index) => (
-            <CartProduct
-              numPerId={cart.cartItem[index].amount}
-              key={item._id}
-              pricePerId={pricePerId}
-              totalPrice={totalPrice}
-              setTotalPrice={setTotalPrice}
-              cart={cart}
-              setCart={setCart}
-            >
-              {item}
-            </CartProduct>
-          ))}
+  if (products) {
+    if (products.length > 0) {
+      return (
+        <div className="wrapper mt-[30px] mb-[30px] flex gap-x-[30px]">
+          <div className="flex flex-col gap-y-[15px]">
+            {products.map((item, index) => (
+              <CartProduct
+                numPerId={cart.cartItem[index].amount}
+                key={item._id}
+                pricePerId={pricePerId}
+                totalPrice={totalPrice}
+                setTotalPrice={setTotalPrice}
+                cart={cart}
+                setCart={setCart}
+              >
+                {item}
+              </CartProduct>
+            ))}
+          </div>
+          <Invoice
+            pricePerId={pricePerId}
+            totalPrice={totalPrice}
+            cart={cart}
+          ></Invoice>
         </div>
-        <Invoice
-          pricePerId={pricePerId}
-          totalPrice={totalPrice}
-          cart={cart}
-        ></Invoice>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="flex flex-col justify-center items-center p-[100px]">
+          <img srcSet={`${EMPTY_CART} 1x`} alt="empty_cart" />
+          <h1 className="font-secondaryFont font-bold text-[30px] text-[#ffcd00]">
+            {_idUser ? "Giỏ hàng hiện trống!!!" : "Vui lòng đăng nhập!!!"}
+          </h1>
+          ;
+        </div>
+      );
+    }
   } else {
     return (
       <div className="flex flex-col justify-center items-center p-[100px]">

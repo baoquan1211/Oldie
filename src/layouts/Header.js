@@ -58,18 +58,18 @@ const Header = () => {
                   </h1>
                 </div>
                 <Link to={`/user/${_idUser}`}>
-                  <button className=" text-[#FFB800] h-[40px] font-primaryFont font-bold ">
+                  <button className=" text-[#FFB800] w-max h-[40px] font-primaryFont font-bold ">
                     Tài khoản
                   </button>
                 </Link>
                 <Link to="/post">
-                  <button className=" text-[#FFB800] h-[40px] font-primaryFont font-bold text-center">
+                  <button className=" text-[#FFB800] w-max h-[40px] font-primaryFont font-bold text-center">
                     Đăng bài
                   </button>
                 </Link>
                 <button
                   onClick={logout}
-                  className=" text-[#FFB800] min-h-[40px] font-primaryFont font-bold "
+                  className=" text-[#FFB800] w-max min-h-[40px] font-primaryFont font-bold "
                 >
                   Đăng xuất
                 </button>

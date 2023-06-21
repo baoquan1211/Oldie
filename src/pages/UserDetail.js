@@ -70,9 +70,9 @@ const UserDetail = () => {
     let result = String(date);
     return (
       result.substr(8, 2) +
-      " - " +
+      "-" +
       result.substr(5, 2) +
-      " - " +
+      "-" +
       result.substr(0, 4)
     );
   };
@@ -292,7 +292,9 @@ const UserDetail = () => {
                 </div>
               )
             ) : order.length > 0 ? (
-              <OrderShow _idUser={_id}></OrderShow>
+              <div className="flex flex-col items-center justify-center gap-y-5">
+                <OrderShow _idUser={_id}></OrderShow>
+              </div>
             ) : (
               <div className="flex flex-col items-center justify-center p-8">
                 {console.log(order)}

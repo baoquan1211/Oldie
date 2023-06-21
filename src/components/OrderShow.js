@@ -18,9 +18,9 @@ const OrderShow = ({ _idUser }) => {
     let result = String(date);
     return (
       result.substr(8, 2) +
-      " - " +
+      "-" +
       result.substr(5, 2) +
-      " - " +
+      "-" +
       result.substr(0, 4)
     );
   };
@@ -46,7 +46,7 @@ const OrderShow = ({ _idUser }) => {
         Phí vận chuyển: {intToVND(item.ChiPhiVanChuyen)} VND
       </h1>
       <h1 className=" font-primaryFont font-semibold text-[17px]">
-        Tổng tiền: {intToVND(item.TongTien)}
+        Tổng tiền: {intToVND(item.TongTien)} VND
       </h1>
       <h1 className=" font-primaryFont font-semibold text-[17px]">
         Các sản phẩm:{" "}
