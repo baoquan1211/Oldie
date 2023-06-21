@@ -6,9 +6,9 @@ import PAYMENT from "../assets/images/payment.png";
 
 const Slogan = () => {
   return (
-    <section className="h-[518px] bg-linearBg3 mt-[80px] mb-[80px]">
-      <div className="grid grid-rows-2 items-center justify-center font-secondaryFont font-bold text-[43px] text-Color2">
-        <div className="mt-[80px] mb-[80px] flex justify-center">
+    <section className="bg-[#FEEFD0] pb-[80px]">
+      <div className="flex flex-col items-center justify-center font-secondaryFont font-bold text-[43px] text-Color2">
+        <div className="pt-[80px] pb-[30px] flex justify-center">
           <h1>Nhanh chóng - Thuận tiện</h1>
         </div>
         <div className="grid grid-cols-3">

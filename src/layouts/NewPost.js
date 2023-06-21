@@ -23,9 +23,9 @@ const NewPost = () => {
   };
 
   return (
-    <section className=" bg-white mt-[80px] mb-[50px]">
+    <section className="bg-white pt-[80px] pb-[50px]">
       <div className="wrapper justify-center text-center">
-        <h1 className="font-secondaryFont font-bold text-[43px]">
+        <h1 className="font-secondaryFont font-bold text-[43px] text-black">
           Bài viết mới đăng
         </h1>
         <div className="mt-[40px]">
