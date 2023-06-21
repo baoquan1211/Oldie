@@ -35,7 +35,7 @@ const SearchBanner = () => {
                   setProductSearch(e.target.value);
                 }}
                 type="text"
-                placeholder={"Nhập sản phẩm"}
+                placeholder={"Nhập tên sản phẩm..."}
                 className="input-form bg-[#F5F5F5] w-full max-w-[641px] h-[49px] rounded-[8px] p-4 font-secondaryFont text-[#9E9E9E]"
               ></input>
               <Button

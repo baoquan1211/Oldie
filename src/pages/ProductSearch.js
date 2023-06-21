@@ -15,13 +15,15 @@ const ProductSearch = () => {
       });
     };
     fetchData();
-  }, [searchItem.name]);
+  }, [searchItem.name, searchItem.type]);
   return (
     <>
       <Header></Header>
-      <div className="flex justify-center">
-        <div className="mt-[108px] wrapper items-center pt-[70px] pb-[70px]">
-          <ProductShow value="price">{result}</ProductShow>
+      <div className="bg-white">
+        <div className="flex justify-center">
+          <div className="mt-[108px] wrapper items-center pt-[70px] pb-[70px]">
+            <ProductShow value="price">{result}</ProductShow>
+          </div>
         </div>
       </div>
     </>

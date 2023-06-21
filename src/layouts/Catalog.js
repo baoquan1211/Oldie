@@ -40,13 +40,13 @@ const Catalog = () => {
     <section className="h-[571px] bg-[#FEFAF1] pt-[80px] pb-[80px]">
       <div className="wrapper flex items-center">
         <div className="w-full">
-          <h1 className="text-[43px] font-bold font-secondaryFont">
+          <h1 className="text-[43px] font-bold font-secondaryFont text-black">
             Danh mục sản phẩm
           </h1>
         </div>
       </div>
       <div className="wrapper flex items-center justify-center">
-        <div className="grid grid-cols-6 justify-between gap-x-[120px] mt-12 max-w-[1438px] text-center">
+        <div className="grid grid-cols-6 justify-between gap-x-[105px] mt-12 max-w-[1438px] text-center">
           {Catalog_Items.map((item) => (
             <Link to={`/search//${item.title}`} key={item.title}>
               <div className="grid grid-rows-2 gap-y-[90px] mt-[80px] max-w-[218px]">

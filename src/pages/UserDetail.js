@@ -114,13 +114,13 @@ const UserDetail = () => {
             <h1 className="font-secondaryFont font-bold text-[30px] text-[#FB3C00]">
               {user.hoten}
             </h1>
-            <h1 className="mt-3 font-secondaryFont text-[20px] text-black">
+            <h1 className="mt-3 font-secondaryFont font-semibold text-[20px] text-black">
               Giới tính: <span>{user.gioitinh}</span>
             </h1>
-            <h1 className="font-secondaryFont text-[20px] text-black">
+            <h1 className="font-secondaryFont font-semibold text-[20px] text-black">
               Địa chỉ: <span>{user.diachi}</span>
             </h1>
-            <h1 className="font-secondaryFont text-[20px] text-black">
+            <h1 className="font-secondaryFont font-semibold text-[20px] text-black">
               Tham gia ngày: <span>{dateHandle(user.createdAt)}</span>
             </h1>
             <div className="mt-3 flex items-center pl-4 bg-[#E6E6E6] w-[400px] h-[40px] rounded-[8px] ">
