@@ -28,6 +28,7 @@ import PostProduct from "./pages/PostProduct";
 import ProductDetail from "./pages/ProductDetail";
 import ProductSearch from "./pages/ProductSearch";
 import UserDetail from "./pages/UserDetail";
+import Error from "./pages/Error";
 
 const persistConfig = { key: "root", storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, authReducer);
@@ -63,6 +64,7 @@ root.render(
             <Route path="/search//:type" element={<ProductSearch />}></Route>
             <Route path="/search/" element={<ProductSearch />}></Route>
             <Route path="/user/:id" element={<UserDetail />}></Route>
+            <Route path="*" element={<Error />}></Route>
           </Routes>
           <Footer></Footer>
         </BrowserRouter>
