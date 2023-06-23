@@ -137,7 +137,11 @@ const ProductDetail = () => {
             <div className="flex h-[50px] gap-x-[20px] justify-center items-center">
               <div className="flex items-center">
                 {seller.hinhanh ? (
-                  <img src={seller.hinhanh} alt="user" className="h-[50px]" />
+                  <img
+                    src={seller.hinhanh}
+                    alt="user"
+                    className="h-[50px] w-[50px] rounded-[180px]"
+                  />
                 ) : (
                   <img src={USER} alt="user" className="h-[50px]" />
                 )}
