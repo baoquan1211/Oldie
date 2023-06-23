@@ -3,6 +3,7 @@ import P1 from "../assets/images/p1.png";
 import Button from "../components/Button";
 import MONEY from "../assets/images/money.png";
 import STAR from "../assets/images/star.png";
+import { Link } from "react-router-dom";
 
 const ProductShow = ({
   children,
@@ -25,8 +26,8 @@ const ProductShow = ({
     return (
       <div className={`grid grid-cols-4 gap-x-[20px] gap-y-[20px]`}>
         {children.map((item) => (
-          <a
-            href={`/product/${item._id}`}
+          <Link
+            to={`/product/${item._id}`}
             key={item._id}
             className="max-w-[342.25px]"
           >
@@ -54,9 +55,8 @@ const ProductShow = ({
                       {item.TenSp}
                     </h1>
                     <div className="flex items-center gap-x-[5px]">
-                      <img src={MONEY} alt="Money"></img>
                       <p className="font-secondaryFont font-bold text-[22px] text-[#FFB30E]">
-                        {intToVND(item.Gia)}
+                        {intToVND(item.Gia)} VND
                       </p>
                     </div>
                   </div>
@@ -68,7 +68,7 @@ const ProductShow = ({
                 </Button>
               </div>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     );
