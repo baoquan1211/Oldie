@@ -28,7 +28,7 @@ const CartForm = () => {
     if (products.length > 0) {
       return (
         <div className="bg-white">
-          <div className="wrapper mt-[30px] mb-[30px] flex gap-x-[30px]">
+          <div className="wrapper mt-[30px] mb-[30px] flex justify-between">
             <div className="flex flex-col gap-y-[15px]">
               {products.map((item, index) => (
                 <CartProduct
@@ -44,12 +44,12 @@ const CartForm = () => {
                 </CartProduct>
               ))}
             </div>
+            <Invoice
+              pricePerId={pricePerId}
+              totalPrice={totalPrice}
+              cart={cart}
+            ></Invoice>
           </div>
-          <Invoice
-            pricePerId={pricePerId}
-            totalPrice={totalPrice}
-            cart={cart}
-          ></Invoice>
         </div>
       );
     } else {
