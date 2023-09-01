@@ -10,7 +10,7 @@ const Button = ({
     return (
       <a
         href={link}
-        className={`rounded-[8px] justify-center flex items-center gap-x-[12px]  ${
+        className={`rounded-[8px] justify-center flex items-center gap-x-[12px] transition-all ease-in-out duration-300 ${
           className || ""
         }`}
         {...props}
@@ -23,7 +23,7 @@ const Button = ({
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`rounded-[8px] justify-center flex items-center gap-x-[12px] ${
+      className={`rounded-[8px] justify-center flex items-center gap-x-[12px] transition-all ease-in-out duration-300 ${
         className || ""
       }`}
       {...props}

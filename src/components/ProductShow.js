@@ -1,7 +1,6 @@
 import React from "react";
 import P1 from "../assets/images/p1.png";
 import Button from "../components/Button";
-import MONEY from "../assets/images/money.png";
 import STAR from "../assets/images/star.png";
 import { Link } from "react-router-dom";
 
@@ -24,7 +23,9 @@ const ProductShow = ({
   // eslint-disable-next-line eqeqeq
   if (value == "price") {
     return (
-      <div className={`grid grid-cols-4 gap-x-[20px] gap-y-[20px]`}>
+      <div
+        className={`grid grid-cols-2 xl:grid-cols-4 gr gap-x-[20px] gap-y-[20px]`}
+      >
         {children.map((item) => (
           <Link
             to={`/product/${item._id}`}

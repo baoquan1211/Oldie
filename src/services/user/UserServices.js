@@ -71,6 +71,7 @@ const getOrder = (_id) => {
   return axios.get(`user/getOrder/${_id}`);
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export {
   postProduct,
   addCart,

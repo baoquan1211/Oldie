@@ -23,23 +23,18 @@ const Feature_Items = [
 const Feature = () => {
   return (
     <section className="h-[456px] bg-[#FEEFD0] flex items-center justify-center">
-      <div
-        className="w-[1230px] h-[246px] bg-white rounded-[46px] flex items-center justify-center
-       gap-x-[95px]"
-      >
+      <div className=" p-[48px] bg-white rounded-[46px] flex items-center justify-center gap-x-[95px]">
         {Feature_Items.map((item) => (
           <div
-            className="flex items-center justify-center gap-x-[15px]"
+            className="flex flex-col xl:flex-row items-center justify-center gap-x-[15px]"
             key={item.title1}
           >
-            <div>
-              <img src={item.image} alt={item.title}></img>
-            </div>
-            <div>
-              <h1 className="text-[#FE9501] font-secondaryFont text-[35px] font-bold">
+            <img src={item.image} alt={item.title}></img>
+            <div className="flex flex-col items-center justify-center xl:items-start">
+              <h1 className="text-[#FE9501] font-secondaryFont text-center text-[35px] font-bold">
                 {item.title1}
               </h1>
-              <h1 className="text-[#FE9501] font-secondaryFont text-[35px] font-bold">
+              <h1 className="text-[#FE9501] font-secondaryFont text-center text-[35px] font-bold">
                 {item.title2}
               </h1>
             </div>

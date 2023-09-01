@@ -4,6 +4,7 @@ import toastr from "toastr";
 import { postProduct } from "../services/user/UserServices";
 import FileUpload from "../components/FileUpload";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/Button";
 
 const PostProduct = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const PostProduct = () => {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [discription, setDiscription] = useState("");
+
   const [images, setImages] = useState([]);
 
   const handleClick = async () => {
@@ -69,12 +71,12 @@ const PostProduct = () => {
       <Header></Header>
       <div className="bg-white">
         <div className="text-center border-b-[2px] mt-[108px]">
-          <h1 className="font-secondaryFont font-bold text-[88px] text-[#F59500] ">
+          <h1 className="font-secondaryFont font-bold text-[68px] xl:text-[88px] text-[#F59500] ">
             Đăng bài sản phẩm
           </h1>
         </div>
         <div className="wrapper pt-[50px] pb-[50px] flex justify-center">
-          <div className="flex gap-x-[100px]">
+          <div className="flex flex-col xl:flex-row gap-x-[100px]">
             <div>
               <div className="flex flex-col">
                 <h1 className="font-secondaryFont font-bold text-[36px] text-[#F59500]">
@@ -173,12 +175,12 @@ const PostProduct = () => {
                 ></textarea>
               </div>
               <div className="flex justify-center mt-[35px]">
-                <button
+                <Button
                   className="w-[200px] h-[68px] rounded-[8px] mt-[10px] bg-[#F59500]  hover:bg-[#FFAD2D] active:bg-[#F09303]  font-secondaryFont font-bold text-white text-[22px]"
                   onClick={handleClick}
                 >
                   Đăng bài
-                </button>
+                </Button>
               </div>
             </div>
           </div>

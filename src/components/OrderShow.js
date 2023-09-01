@@ -3,12 +3,12 @@ import { getOrder } from "../services/user/UserServices";
 import OrderProduct from "../components/OrderProduct";
 
 const OrderShow = ({ _idUser }) => {
-  const [order, setOrder] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       await getOrder(_idUser).then((res) => {
-        setOrder(res);
+        setOrders(res);
       });
     };
     fetchData();
@@ -31,32 +31,32 @@ const OrderShow = ({ _idUser }) => {
     return result.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
-  return order.map((item) => (
+  return orders.map((order) => (
     <div
-      key={item._id}
+      key={order._id}
       className="flex flex-col bg-[#FAFAF5] rounded-[16px] p-5 gap-y-1"
     >
       <h1 className=" font-primaryFont font-semibold text-[17px] text-black">
-        Mã đơn hàng: #{item._id}
+        Mã đơn hàng: #{order._id}
       </h1>
       <h1 className=" font-primaryFont font-semibold text-[17px] text-black">
-        Ngày đặt: {dateHandle(item.createdAt)}
+        Ngày đặt: {dateHandle(order.createdAt)}
       </h1>
       <h1 className=" font-primaryFont font-semibold text-[17px] text-black">
-        Phí vận chuyển: {intToVND(item.ChiPhiVanChuyen)} VND
+        Phí vận chuyển: {intToVND(order.ChiPhiVanChuyen)} VND
       </h1>
       <h1 className=" font-primaryFont font-semibold text-[17px] text-black">
-        Tổng tiền: {intToVND(item.TongTien)} VND
+        Tổng tiền: {intToVND(order.TongTien)} VND
       </h1>
       <h1 className=" font-primaryFont font-semibold text-[17px] text-black">
         Các sản phẩm:{" "}
       </h1>
       <div className="flex flex-col items-center gap-y-3 mt-2">
-        {item.orderItem.map((item) => (
+        {order.orderItem.map((product) => (
           <OrderProduct
-            key={item._id}
-            _idProduct={item._idSp}
-            numProduct={item.amount}
+            key={product._id}
+            _idProduct={product._idSp}
+            numProduct={product.amount}
           ></OrderProduct>
         ))}
       </div>

@@ -15,7 +15,8 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const Login = async () => {
+  const Login = async (e) => {
+    e.preventDefault();
     if (!username) {
       toastr.error("Vui lòng nhập tài khoản.");
     } else if (!password) {
@@ -46,15 +47,15 @@ const Login = () => {
     <>
       <Header></Header>
       <div className="bg-white">
-        <div className="mt-[108px] wrapper flex flex-col items-center pt-[60px] pb-[60px]">
-          <div className="flex flex-col w-[886px] h-[544px] ">
+        <div className="xl:mt-[108px] wrapper flex flex-col items-center pt-[30px] pb-[60px]">
+          <div className="flex flex-col w-full">
             <div className="text-center border-b-[2px]">
-              <h1 className="font-secondaryFont font-bold text-[88px] text-[#F59500] ">
+              <h1 className="font-secondaryFont font-bold text-[50px] xl:text-[88px] text-[#F59500] ">
                 Đăng nhập
               </h1>
             </div>
-            <div className="mt-[50px] flex items-center justify-center gap-x-[100px]">
-              <div className="flex flex-col gap-y-[25px]">
+            <div className="mt-[50px] h-full flex flex-col sm:flex-row items-center justify-center gap-x-[100px]">
+              <form onSubmit={Login} className="flex flex-col gap-y-[25px]">
                 <input
                   placeholder="Nhập tên đăng nhập..."
                   onChange={(e) => setUsername(e.target.value)}
@@ -67,12 +68,13 @@ const Login = () => {
                   className="bg-[#CAC5C5] input-form w-[330px] h-[40px] rounded-[8px] pl-[15px] pr-[15px] font-primaryFont text-[18px] text-[#3E3838] placeholder-[#3E3838] placeholder-[18px]"
                 ></input>
                 <button
-                  className="w-[330px] h-[68px] rounded-[8px] mt-[20px] bg-[#F59500] hover:bg-[#FFAD2D] active:bg-[#F09303] font-secondaryFont font-bold text-white text-[22px]"
+                  className="w-[330px] h-[68px] rounded-[8px] mt-[20px] bg-[#F59500] hover:bg-[#FFAD2D] active:bg-[#F09303] font-secondaryFont font-bold text-white text-[22px] ct-transition"
+                  type="submit"
                   onClick={Login}
                 >
                   Đăng nhập
                 </button>
-              </div>
+              </form>
               <div className="flex flex-col gap-y-[44px] justify-center items-center">
                 <h1 className="font-primaryFont text-[20px]">
                   Hoặc sử dụng tài khoản

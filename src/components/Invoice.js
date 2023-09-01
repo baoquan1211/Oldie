@@ -86,7 +86,7 @@ const Invoice = ({ totalPrice, cart }) => {
         ></input>
         <button
           onClick={voucherHandle}
-          className="h-[41px] w-[82px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303]"
+          className="h-[41px] w-[82px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303] transition-all ease-in-out duration-300"
         >
           Sử dụng
         </button>
@@ -98,9 +98,9 @@ const Invoice = ({ totalPrice, cart }) => {
       <div className="flex justify-center mt-[10px]">
         <button
           onClick={paymentHandle}
-          className="h-[48px] w-[380px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303]"
+          className="h-[48px] w-[380px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303] transition-all ease-in-out duration-300"
         >
-          <div className="flex justify-between items-center pr-[16px] pl-[16px]">
+          <div className="flex justify-between items-center pr-[16px] pl-[16px] ">
             <h2>Thanh toán</h2>
             <img src={ARROW} alt="arrow"></img>
           </div>

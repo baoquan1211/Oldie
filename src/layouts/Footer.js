@@ -38,16 +38,16 @@ const Footer_List_Item = [
 
 const Footer = () => {
   return (
-    <section className="h-[500px] bg-[#212121]">
-      <div className="wrapper flex text-[#F5F5F5] pr-[100px] pl-[100px] gap-x-[100px]">
-        <div className="flex items-start gap-x-[40px] mt-[80px] justify-start w-full">
+    <section className=" bg-[#212121] flex flex-col w-full">
+      <div className="flex lg:flex-row flex-col text-[#F5F5F5] px-[50px] gap-x-[100px] wrapper py-[80px]">
+        <div className="flex flex-col md:flex-row items-start gap-[40px] justify-start w-full">
           {Footer_List_Item.map((item) => (
             <div
               key={item.title}
               className="flex flex-col text-[22px] w-[170px] font-secondaryFont font-bold"
             >
               {item.title}
-              <div className="flex flex-col mt-[40px] ">
+              <div className="flex flex-col mt-[10px] md:mt-[40px]">
                 {item.items.map((i) => (
                   <a
                     href="/"
@@ -61,7 +61,7 @@ const Footer = () => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col gap-y-[30px] items-start mt-[80px]">
+        <div className="flex flex-col gap-y-[30px] items-start ">
           <div>
             <h1 className="text-gray-100 text-[18px] font-secondaryFont font-bold">
               FOLLOW US
@@ -83,11 +83,11 @@ const Footer = () => {
               Receive exclusive offers in your mailbox
             </h1>
           </div>
-          <div className="justify-start flex items-center gap-x-2">
+          <div className="flex flex-col items-center justify-start xl:flex-row gap-x-2">
             <input
               type="text"
               placeholder={"Enter your email"}
-              className="input-form border-Color2 bg-[#424242] w-[334px] h-[60px] rounded-[8px] p-4 font-primaryFont text-[18px] text-[#ADADAD]"
+              className="input-form border-Color2 bg-[#424242] w-max h-[60px] rounded-[8px] p-4 font-primaryFont text-[18px] text-[#ADADAD]"
             ></input>
             <Button className="w-[133px] h-[60px] bg-[#F59500] text-[18px] font-bold font-secondaryFont text-white  hover:bg-[#FFAD2D] active:bg-[#F09303]">
               Subscribe
@@ -95,8 +95,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center border-t-[2px] border-t-[#424242] mt-[90px]">
-        <div className="flex flex-row gap-1 items-center mt-[40px]">
+      <div className="flex items-center justify-center border-t-[2px] border-t-[#424242] ">
+        <div className="flex items-center justify-center gap-1 py-[30px]">
           <h2 className="text-[#F5F5F5] font-primaryFont text-[15px]">
             All rights Reserved{" "}
           </h2>

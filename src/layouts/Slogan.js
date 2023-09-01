@@ -6,9 +6,9 @@ import PAYMENT from "../assets/images/payment.png";
 
 const Slogan = () => {
   return (
-    <section className="bg-[#FEEFD0] pb-[80px]">
+    <section className="bg-[#FEEFD0] py-[80px] px-[30px]">
       <div className="flex flex-col items-center justify-center font-secondaryFont font-bold text-[43px] text-Color2">
-        <div className="pt-[80px] pb-[30px] flex justify-center">
+        <div className="flex justify-center ">
           <h1>Nhanh chóng - Thuận tiện</h1>
         </div>
         <div className="grid grid-cols-3">
@@ -16,7 +16,7 @@ const Slogan = () => {
             <div className="flex items-center justify-center">
               <img src={PRODUCT} alt="Location"></img>
             </div>
-            <div className="block items-center justify-center text-center">
+            <div className="items-center justify-center block text-center">
               <h2 className="font-secondaryFont text-[22px] font-bold text-[#434343]">
                 Chọn sản phẩm
               </h2>
@@ -29,7 +29,7 @@ const Slogan = () => {
             <div className="flex items-center justify-center">
               <img src={LOCATION} alt="Location"></img>
             </div>
-            <div className="block items-center justify-center text-center">
+            <div className="items-center justify-center block text-center">
               <h2 className="font-secondaryFont text-[22px] font-bold text-[#434343]">
                 Chọn địa điểm
               </h2>
@@ -42,7 +42,7 @@ const Slogan = () => {
             <div className="flex items-center justify-center">
               <img src={PAYMENT} alt="Location"></img>
             </div>
-            <div className="block items-center justify-center text-center">
+            <div className="items-center justify-center block text-center">
               <h2 className="font-secondaryFont text-[22px] font-bold text-[#434343]">
                 Thanh toán
               </h2>

@@ -24,10 +24,12 @@ const NewPost = () => {
 
   return (
     <section className="bg-white pt-[80px] pb-[50px]">
-      <div className="wrapper justify-center text-center">
+      <div className="flex items-center justify-center wrapper xl:justify-start">
         <h1 className="font-secondaryFont font-bold text-[43px] text-black">
           Bài viết mới đăng
         </h1>
+      </div>
+      <div className="flex flex-col items-center justify-center text-center wrapper">
         <div className="mt-[40px]">
           <ProductShow value="price" nums={8}>
             {result}

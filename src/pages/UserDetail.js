@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { userDetail } from "../services/guest/GuestServices";
 import Header from "../layouts/Header";
@@ -27,22 +28,31 @@ const UserDetail = () => {
   const [email, setEmail] = useState(user.email);
   const [address, setAddress] = useState(user.diachi);
   const [defaultavatar, setDefaultAvatar] = useState(user.hinhanh);
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState(user.hinhanh);
   const [show, setShow] = useState("postedproduct");
 
+  const fetchUser = useCallback(async () => {
+    await userDetail(_idUser.id).then((res) => {
+      setUser(res._userInf);
+      setProduct(res._userProduct);
+      setDefaultAvatar(user.hinhanh);
+      setName(user.hoten);
+      setPhone(user.SDT);
+      setEmail(user.email);
+      setAddress(user.diachi);
+      setGender(user.gioitinh);
+    });
+  }, [
+    _idUser,
+    user.hoten,
+    user.hinhanh,
+    user.SDT,
+    user.email,
+    user.diachi,
+    user.gioitinh,
+  ]);
+
   useEffect(() => {
-    const fetchUser = async () => {
-      await userDetail(_idUser.id).then((res) => {
-        setUser(res._userInf);
-        setProduct(res._userProduct);
-        setDefaultAvatar(user.hinhanh);
-        setName(user.hoten);
-        setPhone(user.SDT);
-        setEmail(user.email);
-        setAddress(user.diachi);
-        setGender(user.gioitinh);
-      });
-    };
     fetchUser();
   }, [
     _idUser,
@@ -53,6 +63,7 @@ const UserDetail = () => {
     user.diachi,
     user.gioitinh,
     order,
+    fetchUser,
   ]);
 
   useEffect(() => {
@@ -90,7 +101,7 @@ const UserDetail = () => {
     if (res && res.message === "Updated Successfully") {
       toastr.success("Cập nhật dữ liệu người dùng thành công");
       setTimeout(() => {
-        document.location.reload();
+        fetchUser();
       }, 800);
     } else {
       toastr.error("Có lỗi xảy ra. Vui lòng thử lại");
@@ -100,8 +111,8 @@ const UserDetail = () => {
     <>
       <Header></Header>
       <div className="bg-white">
-        <div className="wrapper flex justify-center mt-[108px] p-10 gap-x-[50px]">
-          <div className="bg-[#FAFAF5] p-8 rounded-[24px] h-fit">
+        <div className="wrapper flex flex-col xl:flex-row items-center xl:items-start justify-center mt-[108px] p-10 gap-[50px]">
+          <div className="bg-[#FAFAF5] p-8 rounded-[24px] h-fit w-fit">
             {defaultavatar ? (
               <img
                 src={defaultavatar}
@@ -137,24 +148,25 @@ const UserDetail = () => {
             </div>
             {_id === _idUser.id && (
               <a href="#changeInfoUser">
-                <button className="mt-3 h-[48px] w-[400px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:bg-[#F09303]">
+                <Button className="mt-3 h-[48px] w-[400px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:hover:bg-[#FFAD2D] ct-transition">
                   <div className="flex justify-between items-center pr-[16px] pl-[16px]">
                     <h2>Chỉnh sửa thông tin cá nhân</h2>
                     <img src={ARROW} alt="arrow"></img>
                   </div>
-                </button>
+                </Button>
               </a>
             )}
             <dialog id="changeInfoUser" className="modal">
               <form method="dialog" className="modal-box">
                 <a
                   href="#"
-                  className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                  className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2"
                 >
                   ✕
                 </a>
-                <div className="flex justify-center items-center flex-col gap-y-3">
+                <div className="flex flex-col items-center justify-center gap-y-3">
                   <div className="rounded-[180px] h-[180px] w-[180px] bg-[#D9D9D9] relative"></div>
+
                   {avatar ? (
                     <img
                       src={avatar ? URL.createObjectURL(avatar) : USER}
@@ -163,7 +175,7 @@ const UserDetail = () => {
                     />
                   ) : (
                     <img
-                      src={defaultavatar}
+                      src={USER}
                       alt="avatar"
                       className="h-[150px] w-[150px] rounded-[180px] border-solid absolute top-10 opacity-50"
                     />
@@ -244,7 +256,7 @@ const UserDetail = () => {
               </form>
             </dialog>
           </div>
-          <div className="flex flex-col p-8 rounded-[8px] border-dashed border-[#FFB800] border-[2px] gap-y-3 h-fit">
+          <div className="flex w-fit flex-col p-8 rounded-[8px] border-dashed border-[#FFB800] border-[2px] gap-y-3 h-fit">
             <div className="flex">
               <div className="pr-[50px] border-r-[#FFB800] border-r-[2px]">
                 <Button
@@ -266,11 +278,11 @@ const UserDetail = () => {
                   onClick={() => {
                     setShow("order");
                   }}
-                  className={`h-[70px] w-[230px] font-primaryFont font-bold rounded-[8px] border-[#FFB800] border-[2px] ${
+                  className={`h-[70px] w-[230px] font-primaryFont font-bold rounded-[8px] border-[#FFB800] border-[2px]  ${
                     _id === _idUser.id
                       ? show === "order"
-                        ? "text-white bg-[#FFB800] hover:bg-white hover:text-[#FFB800]"
-                        : "text-[#FFB800] bg-white hover:bg-[#FFB800] hover:text-white"
+                        ? "text-white bg-[#FFB800] hover:bg-white focus:bg-[#FFB800] active:bg-white hover:text-[#FFB800]"
+                        : "text-[#FFB800] bg-white hover:bg-[#FFB800] focus:bg-[#FFB800] active:bg-[#FFB800] hover:text-white"
                       : "bg-gray-300 border-gray-400 cursor-pointer"
                   }`}
                 >
@@ -278,7 +290,7 @@ const UserDetail = () => {
                 </Button>
               </div>
             </div>
-            <div className="flex flex-col h-fit gap-y-3 mt-5">
+            <div className="flex flex-col mt-5 h-fit gap-y-3">
               {show === "postedproduct" ? (
                 product.length > 0 ? (
                   product.map((item) => (
@@ -298,7 +310,7 @@ const UserDetail = () => {
                 )
               ) : order.length > 0 ? (
                 <div className="flex flex-col items-center justify-center gap-y-5">
-                  <OrderShow _idUser={_id}></OrderShow>
+                  <OrderShow key={_id} _idUser={_id}></OrderShow>
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center p-8">

@@ -28,12 +28,12 @@ const Header = () => {
   };
 
   return (
-    <header className="h-[108px] bg-gray-100 w-full fixed top-0 left-0 z-50">
-      <div className="wrapper flex items-center h-full justify-between">
+    <header className=" h-[108px] w-full bg-gray-100 xl:fixed top-0 left-0 z-50">
+      <nav className="flex items-center justify-between h-full md:flex ">
         <Link to="/home">
           <img src={LOGO} alt="Logo"></img>
         </Link>
-        <div className="flex items-center gap-x-4 pr-3">
+        <div className="flex items-center pr-3 gap-x-4">
           <a href="/cart">
             <img srcSet={`${CART} 3.5x`} alt="Cart"></img>
           </a>
@@ -77,13 +77,13 @@ const Header = () => {
             </div>
           ) : (
             <a href="/login" alt="Login">
-              <Button className="h-[46px] w-[142px] text-[#FFB800] font-primaryFont font-bold gap-1 rounded-[8px] shadow-linearColor1 bg-white hover:bg-[#FFB800] hover:text-white">
+              <Button className="h-[46px] w-[142px] text-[#FFB800] font-primaryFont font-bold gap-1 rounded-[8px] shadow-linearColor1 bg-white hover:bg-[#FFB800] hover:text-white transition-all ease-in-out duration-300">
                 Đăng nhập
               </Button>
             </a>
           )}
         </div>
-      </div>
+      </nav>
     </header>
   );
 };

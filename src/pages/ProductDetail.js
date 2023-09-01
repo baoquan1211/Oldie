@@ -67,12 +67,12 @@ const ProductDetail = () => {
     <>
       <Header></Header>
       <div className="bg-white text-center border-b-[2px] mt-[108px]">
-        <h1 className="font-secondaryFont font-bold text-[88px] text-[#F59500] ">
+        <h1 className="font-secondaryFont font-bold text-[68px] xl:text-[88px] text-[#F59500] ">
           Thông tin sản phẩm
         </h1>
       </div>
       <div className="bg-white">
-        <div className="wrapper bg-white flex pt-[70px] pb-[70px] relative gap-x-[30px]">
+        <div className="wrapper bg-white flex flex-col xl:flex-row items-start gap-y-3 pt-[70px] p-[70px] relative gap-x-[30px]">
           <div className="w-[605px] h-[400px] bg-[#CAC5C5] flex justify-center relative">
             {product.HinhAnh && (
               <img
