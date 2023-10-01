@@ -65,10 +65,10 @@ const CartProduct = ({
   };
 
   return (
-    <div className="w-[880px] h-[160px] bg-[#FAFAF5] rounded-[24px] border-[2px] border-[#E6E6E6]">
+    <div className="xl:w-[800px] h-[160px] bg-[#FAFAF5] rounded-[24px] border-[2px] border-[#E6E6E6]">
       <div className="flex relative">
         <div className="flex items-center w-full">
-          <div className="flex items-center">
+          <div className=" items-center hidden md:flex">
             <Link to={`/product/${children._id}`}>
               <img
                 srcSet={children.HinhAnh[0]}

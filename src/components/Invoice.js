@@ -56,7 +56,7 @@ const Invoice = ({ totalPrice, cart }) => {
   };
 
   return (
-    <div className="flex flex-col bg-[#FAFAF5] w-[430px] p-[24px] gap-y-[20px] rounded-[24px]">
+    <div className="flex flex-col bg-[#FAFAF5] lg:w-[430px] p-[24px] gap-y-[20px] rounded-[24px]">
       <h1 className="font-primaryFont text-[20px] font-semibold">Hóa đơn</h1>
       <div className="flex justify-between text-[16px] font-primaryFont mt-[10px]">
         <h2>Thành tiền</h2>
@@ -73,7 +73,7 @@ const Invoice = ({ totalPrice, cart }) => {
             setAddress(e.target.value);
           }}
           placeholder="Địa chỉ"
-          className="input-form rounded-[8px] w-[382px] h-[40px] bg-[#F5F5F5] font-primaryFont text-[18px] text-[#9E9E9E] pl-[16px]"
+          className="input-form rounded-[8px] xl:w-[382px] h-[40px] bg-[#F5F5F5] font-primaryFont text-[18px] text-[#9E9E9E] pl-[16px]"
         ></input>
       </div>
       <div className="flex justify-center gap-x-[16px] items-center ">

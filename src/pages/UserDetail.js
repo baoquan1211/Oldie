@@ -134,21 +134,21 @@ const UserDetail = () => {
             <h1 className="font-secondaryFont font-semibold text-[20px] text-black">
               Tham gia ngày: <span>{dateHandle(user.createdAt)}</span>
             </h1>
-            <div className="mt-3 flex items-center pl-4 bg-[#E6E6E6] w-[400px] h-[40px] rounded-[8px] ">
+            <div className="mt-3 flex items-center pl-4 bg-[#E6E6E6] xl:w-[400px] overflow-x-auto h-[40px] rounded-[8px] ">
               <img src={MAIL} alt="mail" className="w-[30px] h-[30px]" />
-              <h1 className="pl-3 font-secondaryFont font-bold text-[18px] text-[#FF0000] opacity-80">
-                Email: <span>{user.email}</span>
+              <h1 className="pl-3 font-secondaryFont font-bold text-sm xl:text-[18px] text-[#FF0000] opacity-80">
+                <span>{user.email}</span>
               </h1>
             </div>
-            <div className="mt-3 flex items-center pl-4 bg-[#E6E6E6] w-[400px] h-[40px] rounded-[8px] ">
+            <div className="mt-3 flex items-center pl-4 bg-[#E6E6E6] xl:w-[400px] overflow-x-auto h-[40px] rounded-[8px] ">
               <img src={PHONE} alt="phone" className="w-[30px] h-[30px]" />
               <h1 className="pl-3 font-secondaryFont font-bold text-[18px] text-[#FF0000] opacity-80">
-                SĐT: <span>{user.SDT}</span>
+                <span>{user.SDT}</span>
               </h1>
             </div>
             {_id === _idUser.id && (
               <a href="#changeInfoUser">
-                <Button className="mt-3 h-[48px] w-[400px] rounded-[8px] bg-[#F59500] text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:hover:bg-[#FFAD2D] ct-transition">
+                <Button className="mt-3 h-[48px] xl:w-[400px] rounded-[8px] bg-[#F59500] w-full lg:text-[18px] text-white font-secondaryFont font-bold hover:bg-[#FFAD2D] active:hover:bg-[#FFAD2D] ct-transition">
                   <div className="flex justify-between items-center pr-[16px] pl-[16px]">
                     <h2>Chỉnh sửa thông tin cá nhân</h2>
                     <img src={ARROW} alt="arrow"></img>
@@ -256,14 +256,14 @@ const UserDetail = () => {
               </form>
             </dialog>
           </div>
-          <div className="flex w-fit flex-col p-8 rounded-[8px] border-dashed border-[#FFB800] border-[2px] gap-y-3 h-fit">
+          <div className="w-fit hidden md:flex flex-col p-8 rounded-[8px] border-dashed border-[#FFB800] border-[2px] gap-y-3 h-fit">
             <div className="flex">
               <div className="pr-[50px] border-r-[#FFB800] border-r-[2px]">
                 <Button
                   onClick={() => {
                     setShow("postedproduct");
                   }}
-                  className={`h-[70px] w-[230px] font-primaryFont font-bold rounded-[8px] border-[#FFB800] border-[2px] ${
+                  className={`h-[70px] w-40 lg:w-[230px] font-primaryFont font-bold rounded-[8px] border-[#FFB800] border-[2px] ${
                     show === "postedproduct"
                       ? "text-white bg-[#FFB800] hover:bg-white hover:text-[#FFB800]"
                       : "text-[#FFB800] bg-white hover:bg-[#FFB800] hover:text-white"
@@ -278,11 +278,11 @@ const UserDetail = () => {
                   onClick={() => {
                     setShow("order");
                   }}
-                  className={`h-[70px] w-[230px] font-primaryFont font-bold rounded-[8px] border-[#FFB800] border-[2px]  ${
+                  className={`h-[70px] w-40 lg:w-[230px] font-primaryFont font-bold rounded-[8px] border-[#FFB800] border-[2px]  ${
                     _id === _idUser.id
                       ? show === "order"
                         ? "text-white bg-[#FFB800] hover:bg-white focus:bg-[#FFB800] active:bg-white hover:text-[#FFB800]"
-                        : "text-[#FFB800] bg-white hover:bg-[#FFB800] focus:bg-[#FFB800] active:bg-[#FFB800] hover:text-white"
+                        : "text-[#FFB800] bg-white hover:bg-[#FFB800] focus:bg-[#FFB800] active:bg-[#FFB800] hover:text-white active:text-white"
                       : "bg-gray-300 border-gray-400 cursor-pointer"
                   }`}
                 >
@@ -314,7 +314,6 @@ const UserDetail = () => {
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center p-8">
-                  {console.log(order)}
                   <img
                     src={EMPTY_CART}
                     alt="emptycart"

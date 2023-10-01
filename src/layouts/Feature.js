@@ -22,7 +22,7 @@ const Feature_Items = [
 
 const Feature = () => {
   return (
-    <section className="h-[456px] bg-[#FEEFD0] flex items-center justify-center">
+    <section className="h-[456px] bg-[#FEEFD0] items-center justify-center hidden md:flex">
       <div className=" p-[48px] bg-white rounded-[46px] flex items-center justify-center gap-x-[95px]">
         {Feature_Items.map((item) => (
           <div

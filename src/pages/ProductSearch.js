@@ -23,7 +23,7 @@ const ProductSearch = () => {
         <Header></Header>
         <div className="bg-white">
           <div className="flex justify-center">
-            <div className="mt-[108px] wrapper items-center pt-[70px] pb-[70px]">
+            <div className="mt-12 lg:mt-[108px] wrapper items-center lg:py-[70px]">
               <ProductShow value="price">{result}</ProductShow>
             </div>
           </div>
@@ -34,7 +34,7 @@ const ProductSearch = () => {
     return (
       <>
         <Header></Header>
-        <div className="bg-white text-center border-b-[2px] mt-[108px]">
+        <div className="bg-white text-center border-b-[2px] lg:mt-[108px]">
           <h1 className="font-secondaryFont font-bold text-[88px] text-[#F59500] ">
             Không tìm thấy kết quả
           </h1>

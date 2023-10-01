@@ -27,8 +27,8 @@ const CartForm = () => {
   if (products) {
     if (products.length > 0) {
       return (
-        <div className="bg-white">
-          <div className="wrapper mt-[30px] mb-[30px] flex justify-between">
+        <div className="bg-white p-2">
+          <div className="wrapper mt-[30px] mb-[30px] flex flex-col lg:flex-row justify-between gap-2">
             <div className="flex flex-col gap-y-[15px]">
               {products.map((item, index) => (
                 <CartProduct
@@ -65,9 +65,9 @@ const CartForm = () => {
     }
   } else {
     return (
-      <div className="flex flex-col bg-white justify-center items-center p-[100px]">
+      <div className="flex flex-col bg-white justify-center items-center p-[100px] gap-2">
         <img srcSet={`${EMPTY_CART} 1x`} alt="empty_cart" />
-        <h1 className="font-secondaryFont font-bold text-[30px] text-[#ffcd00]">
+        <h1 className="font-secondaryFont font-bold text-xl lg:text-[30px] text-[#ffcd00] text-center">
           {_idUser ? "Giỏ hàng hiện trống!!!" : "Vui lòng đăng nhập!!!"}
         </h1>
         ;

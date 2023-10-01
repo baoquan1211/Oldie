@@ -5,7 +5,7 @@ import STAR from "../assets/images/star.png";
 import { Link } from "react-router-dom";
 
 const ProductShow = ({
-  children,
+  children = [],
   className = "",
   link = "",
   value = "",
@@ -13,7 +13,7 @@ const ProductShow = ({
   ...props
 }) => {
   if (nums) {
-    children = children.slice(0, 8);
+    children = children?.slice(0, 8);
   }
   function intToVND(n) {
     // format number 1000000 to 1.234.567
@@ -24,9 +24,9 @@ const ProductShow = ({
   if (value == "price") {
     return (
       <div
-        className={`grid grid-cols-2 xl:grid-cols-4 gr gap-x-[20px] gap-y-[20px]`}
+        className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gr gap-x-[20px] gap-y-[20px]`}
       >
-        {children.map((item) => (
+        {children?.map((item) => (
           <Link
             to={`/product/${item._id}`}
             key={item._id}

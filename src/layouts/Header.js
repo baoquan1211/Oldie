@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <header className=" h-[108px] w-full bg-gray-100 xl:fixed top-0 left-0 z-50">
+    <header className="h-[108px] w-full bg-gray-100 xl:fixed top-0 left-0 z-50">
       <nav className="flex items-center justify-between h-full md:flex ">
         <Link to="/home">
           <img src={LOGO} alt="Logo"></img>

@@ -21,7 +21,7 @@ const OrderProduct = ({ _idProduct, numProduct }) => {
 
   return (
     <Link to={`/product/${product._id}`}>
-      <div className="w-[450px] h-[70px] flex justify-between pr-4 bg-[#FAFAF5] rounded-[24px] border-[2px] border-[#E6E6E6]">
+      <div className="lg:w-[450px] w-full h-[70px] flex justify-between pr-4 bg-[#FAFAF5] rounded-[24px] border-[2px] border-[#E6E6E6]">
         <div className="flex">
           <div className="flex items-center w-full">
             {product.HinhAnh && (
@@ -29,7 +29,7 @@ const OrderProduct = ({ _idProduct, numProduct }) => {
                 <img
                   srcSet={product.HinhAnh[0]}
                   alt="product_img"
-                  className="rounded-[24px] h-[66px] w-[90px]"
+                  className="rounded-[24px] h-[66px] w-[90px] md:block hidden"
                 ></img>
               </div>
             )}

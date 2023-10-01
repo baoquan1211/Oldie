@@ -66,19 +66,19 @@ const ProductDetail = () => {
   return (
     <>
       <Header></Header>
-      <div className="bg-white text-center border-b-[2px] mt-[108px]">
-        <h1 className="font-secondaryFont font-bold text-[68px] xl:text-[88px] text-[#F59500] ">
+      <div className="bg-white text-center border-b-[2px] mt-12 lg:mt-[108px]">
+        <h1 className="font-secondaryFont font-bold text-4xl md:text-4xl text-[#F59500]">
           Thông tin sản phẩm
         </h1>
       </div>
       <div className="bg-white">
-        <div className="wrapper bg-white flex flex-col xl:flex-row items-start gap-y-3 pt-[70px] p-[70px] relative gap-x-[30px]">
-          <div className="w-[605px] h-[400px] bg-[#CAC5C5] flex justify-center relative">
+        <div className="wrapper bg-white flex flex-col xl:flex-row items-center gap-y-3 pt-[70px] p-[70px] relative gap-x-[30px]">
+          <div className="lg:w-[605px] w-full h-[400px] bg-[#CAC5C5] flex justify-center relative">
             {product.HinhAnh && (
               <img
                 src={product.HinhAnh[index]}
                 alt="productpicture"
-                className="h-[400px] max-w-[390px]"
+                className="h-[400px] max-w-[390px] w-full"
               />
             )}
             <button onClick={moveLeft}>
@@ -96,12 +96,12 @@ const ProductDetail = () => {
               />
             </button>
           </div>
-          <div className="flex flex-col rounded-[24px] bg-[#FCFCEE] w-[500px] justify-center items-center pt-3 pb-3">
-            <div className="w-[400px]">
-              <h1 className="font-secondaryFont font-bold text-[54px] text-[#292D32]">
+          <div className="flex flex-col rounded-[24px] bg-[#FCFCEE] w-fit xl:w-[500px] justify-center items-center p-3">
+            <div className="lg:w-[400px]">
+              <h1 className="font-secondaryFont font-bold text-4xl md:text-[54px] text-[#292D32]">
                 {product.TenSp}
               </h1>
-              <div className="flex justify-between">
+              <div className="flex flex-col md:flex-row justify-between">
                 <h1 className="font-secondaryFont font-bold text-[30px] text-[#F59500]">
                   {intToVND(product.Gia)} VNĐ
                 </h1>
@@ -133,7 +133,7 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-y-3 justify-center items-center w-[430px] h-[280px] rounded-[24px] bg-[#FCFCEE]">
+          <div className="flex p-2 flex-col gap-y-3 justify-center items-center xl:w-[430px] h-[280px] rounded-[24px] bg-[#FCFCEE]">
             <div className="flex h-[50px] gap-x-[20px] justify-center items-center">
               <div className="flex items-center">
                 {seller.hinhanh ? (
@@ -155,7 +155,7 @@ const ProductDetail = () => {
                 </button>
               </Link>
             </div>
-            <div className="mt-[20px] flex items-center justify-center gap-2 w-[379px] h-[48px] rounded-[8px] bg-[#E6E6E6]">
+            <div className="mt-[20px] p-2 flex items-center justify-center gap-2 xl:w-[379px] h-[48px] rounded-[8px] bg-[#E6E6E6]">
               <img src={PHONE} alt="phone" />
               <h1 className="font-secondaryFont font-bold text-[22px] text-[#FF0000]">
                 Liên lạc: {seller.SDT}

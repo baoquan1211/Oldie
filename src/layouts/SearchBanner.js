@@ -18,10 +18,10 @@ const SearchBanner = () => {
       <div className="flex xl:flex-row flex-col justify-between w-[390px] wrapper p-[32px] gap-[32px]">
         <div className="">
           <div>
-            <h1 className="text-white font-primaryFont text-[88px] font-bold">
+            <h1 className="text-white font-primaryFont text-5xl lg:text-[88px] font-bold">
               Đồ cũ giá rẻ
             </h1>
-            <h2 className="text-black font-primaryFont text-[22px] font-bold">
+            <h2 className="text-black font-primaryFont text-xl lg:text-[22px] font-bold">
               Chắc chắn bạn sẽ tìm thấy sản phẩm ưa thích của mình tại đây
             </h2>
           </div>
@@ -38,7 +38,7 @@ const SearchBanner = () => {
                 }}
                 type="text"
                 placeholder={"Nhập tên sản phẩm..."}
-                className="input-form bg-[#F5F5F5] flex-grow h-[49px] rounded-[8px] p-4 font-secondaryFont text-[#9E9E9E]"
+                className="input-form bg-[#F5F5F5] w-full flex-grow h-[49px] rounded-[8px] p-4 font-secondaryFont text-[#9E9E9E]"
               ></input>
               <Button
                 onClick={searchHandle}
